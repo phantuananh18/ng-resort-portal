@@ -12,7 +12,7 @@
               <input type="text" formControlName="code" nbInput fullWidth id="Code" placeholder="Nhập mã voucher"
                 [status]="getConfig('code') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('code')" class="text-danger">
-                <span *ngIf="form.get('code').errors.required">Mã voucher không được bỏ trống!</span>
+                <span *ngIf="form.get('code').errors.required">Vui lòng nhập mã voucher</span>
                 <span *ngIf="form.get('code').errors?.minlength">
                   Mã voucher chứa ít nhất
                   {{ form.get("code").errors?.minlength.requiredLength }}
@@ -24,7 +24,7 @@
                   ký tự
                 </span>
                 <span *ngIf="form.get('code').errors?.pattern">
-                  Mã voucher không đúng!
+                  Mã voucher không hợp lệ
                 </span>
               </span>
             </div>
@@ -39,7 +39,7 @@
               <span *ngIf="
                   form.get('fromDate').invalid && form.get('fromDate').touched
                 " class="text-danger">
-                <span *ngIf="form.get('fromDate').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('fromDate').errors.required">Vui lòng chọn ngày</span>
               </span>
             </div>
           </div>
@@ -51,7 +51,7 @@
                 [status]="getConfig('toDate') ? 'danger' : 'basic'" />
               <nb-datepicker #toDate [min]="minToDate"></nb-datepicker>
               <span *ngIf="form.get('toDate').invalid && form.get('toDate').touched" class="text-danger">
-                <span *ngIf="form.get('toDate').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('toDate').errors.required">Vui lòng chọn ngày</span>
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@
               <input type="number" formControlName="condition" nbInput fullWidth id="condition"
                 placeholder="Điều kiện áp dụng" [status]="getConfig('condition') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('condition')" class="text-danger">
-                <span *ngIf="form.get('condition').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('condition').errors.required">Vui lòng nhập điều kiện</span>
                 <span *ngIf="form.get('condition').errors?.min">
                   Condition at min {{ form.get("condition").errors?.min.min }}
                 </span>
@@ -76,12 +76,12 @@
               <input type="number" formControlName="discount" nbInput fullWidth id="discount" placeholder="Giảm giá"
                 [status]="getConfig('discount') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('discount')" class="text-danger">
-                <span *ngIf="form.get('discount').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('discount').errors.required">Vui lòng nhập mã giảm giá</span>
                 <span *ngIf="form.get('discount').errors?.min">
-                  Discount at min {{ form.get("discount").errors?.min.min }}
+                  Mã giảm giá ít nhất {{ form.get("discount").errors?.min.min }}
                 </span>
                 <span *ngIf="form.get('discount').errors?.max">
-                  Discount at max {{ form.get("discount").errors?.max.min }}
+                  Mã giảm giá tối đa {{ form.get("discount").errors?.max.min }}
                 </span>
               </span>
             </div>

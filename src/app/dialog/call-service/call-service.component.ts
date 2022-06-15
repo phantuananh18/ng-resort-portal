@@ -12,7 +12,7 @@ export class CallServiceComponent implements OnInit {
   addService: Service[] = []
   removeService: Service[] = []
   billService: string[]
-  @Input() id:number
+  @Input() id: number
   constructor(
     private serviceService: ServiceService,
     private bookingService: BookingService,
@@ -31,7 +31,7 @@ export class CallServiceComponent implements OnInit {
         this.addService = []
         this.removeService = []
         res.forEach(value => {
-          if(this.billService.includes(value.id)) this.removeService.push(value)
+          if (this.billService.includes(value.id)) this.removeService.push(value)
           else this.addService.push(value)
         })
       })
@@ -40,19 +40,19 @@ export class CallServiceComponent implements OnInit {
 
   AddService(service: string) {
     this.bookingService.AddSV(this.id, service).subscribe(res => {
-      this.toast.show(`Add service ${service} success`, 'ADD', {status:'success'})
+      this.toast.show(`Thêm dịch vụ ${service} thành công`, 'THÊM', { status: 'success' })
       this.loadData()
-    },err => {
-      this.toast.show(`Add service ${service} failed`, 'ADD', {status:'danger'})
+    }, err => {
+      this.toast.show(`Thêm dịch vụ ${service} thất bại`, 'THÊM', { status: 'danger' })
     })
   }
 
   RemoveService(service: string) {
     this.bookingService.RemoveSV(this.id, service).subscribe(res => {
-      this.toast.show(`Remove service ${service} success`, 'REMOVE', {status:'success'})
+      this.toast.show(`Xóa dịch vụ ${service} thành công`, 'XÓA', { status: 'success' })
       this.loadData()
-    },err => {
-      this.toast.show(`Remove service ${service} failed`, 'REMOVE', {status:'danger'})
+    }, err => {
+      this.toast.show(`Xóa dịch vụ ${service} thất bại`, 'XÓA', { status: 'danger' })
     })
   }
 }

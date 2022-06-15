@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddSupplyComponent implements OnInit {
   form: FormGroup;
   constructor(
-    private readonly supplyService:SupplyService,
+    private readonly supplyService: SupplyService,
     private fb: FormBuilder,
     private readonly router: Router,
     private readonly dialog: NbDialogService,
@@ -21,7 +21,7 @@ export class AddSupplyComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: ['', [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(2),
         Validators.maxLength(10),
         Validators.pattern('^[0-9A-Z]{2,10}$')
@@ -39,18 +39,18 @@ export class AddSupplyComponent implements OnInit {
 
   addSupply() {
     this.supplyService.addSupply({
-      id : this.form.get('id').value,
-      name : this.form.get('name').value,
-      total : this.form.get('total').value
+      id: this.form.get('id').value,
+      name: this.form.get('name').value,
+      total: this.form.get('total').value
     }).subscribe(
       res => {
-        this.toast.show('Create success', 'ADD', {status:'success'})
+        this.toast.show('Thêm vật tư thành công', 'THÀNH CÔNG', { status: 'success' })
         this.router.navigateByUrl('/home/supply/details/' + this.form.get('id').value)
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
-            title: 'Error when create',
+            title: 'THẤT BẠI',
             content: err.error
           }
         })
@@ -58,7 +58,7 @@ export class AddSupplyComponent implements OnInit {
     )
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 }

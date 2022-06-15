@@ -114,7 +114,7 @@ export class ListStaffComponent implements OnInit {
   onDeleteConfirm(event): void {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: 'Are you want to remove this staff?',
+        title: 'Bạn có muốn xóa nhân viên ?',
         content: "Staff " + event.data.id
       }
     }).onClose.subscribe(result => {

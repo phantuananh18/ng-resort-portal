@@ -18,20 +18,20 @@
                   frUpdateStaff.get('name').invalid &&
                   frUpdateStaff.get('name').touched
                 " class="text-danger">
-                <span *ngIf="frUpdateStaff.get('name').errors.required">Name is required</span>
+                <span *ngIf="frUpdateStaff.get('name').errors.required">Vui lòng nhập họ tên</span>
                 <span *ngIf="frUpdateStaff.get('name').errors?.minlength">
-                  Name at least
+                  Họ tên ít nhất
                   {{
                   frUpdateStaff.get("name").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="frUpdateStaff.get('name').errors?.maxlength">
-                  Name at most
+                  Họ tên tối đa
                   {{
                   frUpdateStaff.get("name").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
               </span>
             </div>
@@ -63,7 +63,7 @@
                   frUpdateStaff.get('birth').invalid &&
                   frUpdateStaff.get('birth').touched
                 " class="text-danger">
-                <span *ngIf="frUpdateStaff.get('birth').errors.required">Birth is required</span>
+                <span *ngIf="frUpdateStaff.get('birth').errors.required">Vui lòng nhập ngày sinh</span>
               </span>
             </div>
           </div>
@@ -83,25 +83,25 @@
                   frUpdateStaff.get('password').invalid &&
                   frUpdateStaff.get('password').touched
                 " class="text-danger">
-                <span *ngIf="frUpdateStaff.get('password').errors.required">Password is required</span>
+                <span *ngIf="frUpdateStaff.get('password').errors.required">Vui lòng nhập mật khẩu</span>
                 <span *ngIf="frUpdateStaff.get('password').errors?.minlength">
-                  Password at least
+                  Mật khẩu ít nhất
                   {{
                   frUpdateStaff.get("password").errors?.minlength
                   .requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="frUpdateStaff.get('password').errors?.maxlength">
-                  Password at most
+                  Mật khẩu tối đa
                   {{
                   frUpdateStaff.get("password").errors?.maxlength
                   .requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="frUpdateStaff.get('password').errors?.pattern">
-                  Password is invalid
+                  Mật khẩu không hợp lệ
                 </span>
               </span>
             </div>
@@ -122,9 +122,9 @@
                   frUpdateStaff.get('phone').invalid &&
                   frUpdateStaff.get('phone').touched
                 " class="text-danger">
-                <span *ngIf="frUpdateStaff.get('phone').errors.required">Phone is required</span>
+                <span *ngIf="frUpdateStaff.get('phone').errors.required">Vui lòng nhập số điện thoại</span>
                 <span *ngIf="frUpdateStaff.get('phone').errors?.pattern">
-                  Phone is invalid
+                  Số điện thoại không hợp lệ
                 </span>
               </span>
             </div>
@@ -144,10 +144,10 @@
                   frUpdateStaff.get('email').invalid &&
                   frUpdateStaff.get('email').touched
                 " class="text-danger">
-                <span *ngIf="frUpdateStaff.get('email').errors.required">Email is required</span>
+                <span *ngIf="frUpdateStaff.get('email').errors.required">Vui lòng nhập email</span>
 
                 <span *ngIf="frUpdateStaff.get('email').errors?.email">
-                  Email is invalid
+                  Email không hợp lệ
                 </span>
 
               </span>
@@ -188,6 +188,6 @@
 
 <ng-template #noStaff>
   <nb-card class="text-danger">
-    <nb-card-header>Staff does not exist</nb-card-header>
+    <nb-card-header>Nhân viên không tồn tại</nb-card-header>
   </nb-card>
 </ng-template>

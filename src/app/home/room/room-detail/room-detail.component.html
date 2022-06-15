@@ -12,40 +12,40 @@
             <nb-list-item>
                 <div class="col-4">
                     <i class="fas fa-inbox"></i>
-                    Loại phòng: 
+                    Loại phòng:
                 </div>
                 <div class="col-6">{{ room.roomType.nameType }}</div>
             </nb-list-item>
             <nb-list-item>
                 <div class="col-4">
                     <i class="fas fa-money-bill-wave"></i>
-                    Giá thuê:  
+                    Giá thuê:
                 </div>
                 <div class="col-6">{{ room.price }} $</div>
             </nb-list-item>
             <nb-list-item>
                 <div class="col-4">
                     <i class="fas fa-user"></i>
-                    Người lớn:  
+                    Người lớn:
                 </div>
                 <div class="col-6">{{ room.adult }}</div>
             </nb-list-item>
             <nb-list-item>
                 <div class="col-4">
                     <i class="fas fa-child"></i>
-                    Trẻ em:  
+                    Trẻ em:
                 </div>
                 <div class="col-6">{{ room.child }}</div>
             </nb-list-item>
             <nb-list-item>
                 <div class="col-4">
                     <i class="fas fa-info-circle"></i>
-                    Mô tả:  
+                    Mô tả:
                 </div>
                 <div class="col-6">{{ room.description }}</div>
             </nb-list-item>
         </nb-list>
-        
+
     </nb-card-body>
     <nb-card-footer *ngIf="isAdmin">
         <div class="row">
@@ -66,6 +66,6 @@
 </nb-card>
 <ng-template #noRoom>
     <nb-card status="danger">
-        <nb-card-header>Staff does not exist</nb-card-header>
+        <nb-card-header>Nhân viên không tồn tại</nb-card-header>
     </nb-card>
 </ng-template>

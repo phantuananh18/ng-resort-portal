@@ -39,20 +39,20 @@ export class DetailUsersComponent implements OnInit {
   onRemove() {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Are you want to remove user ?`,
-        content: `User ${this.customer.id}`
+        title: `Bạn có muốn xóa khách hàng này ?`,
+        content: `Mã khách hàng ${this.customer.id}`
       }
     }).onClose.subscribe(result => {
       if (result) {
         this.customerService.deleteCustomer(this.customer.id).subscribe(
           res => {
-            this.toast.show('REMOVE SUCCESS', 'REMOVE', { status: 'success' })
+            this.toast.show('Xóa khách hàng thành công', 'THÀNH CÔNG', { status: 'success' })
             this.router.navigateByUrl("/home/user")
           },
           err => {
             this.dialog.open(DialogResultComponent, {
               context: {
-                title: 'ERROR',
+                title: 'THẤT BẠI',
                 content: err.error
               }
             })

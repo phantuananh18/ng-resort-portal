@@ -14,7 +14,7 @@ import { DialogResultComponent } from '../../../dialog/dialog-result/dialog-resu
 export class DetailStaffComponent implements OnInit {
   staff: Staff;
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private staffService: StaffService,
     private dialog: NbDialogService,
     private router: Router) { }
@@ -23,36 +23,36 @@ export class DetailStaffComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       this.staffService.getByID(id)
-      .subscribe((res:any) => {
-        this.staff = res.staff
-      })
+        .subscribe((res: any) => {
+          this.staff = res.staff
+        })
     })
   }
 
   onRemove(id: string) {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Are you want to remove staff?`,
+        title: 'Bạn có muốn xóa nhân viên ?',
         content: `ID: ${id}`
       }
     }).onClose.subscribe(result => {
-      if(result) {
+      if (result) {
         this.staffService.removeStaff(id)
-        .subscribe(
-          res => { this.router.navigateByUrl('/home/staff')},
-          err => {
-            this.dialog.open(DialogResultComponent, {
-              context: {
-                title: 'Error remove',
-                content: err.error
-              }
-            })
-          }
-        )
+          .subscribe(
+            res => { this.router.navigateByUrl('/home/staff') },
+            err => {
+              this.dialog.open(DialogResultComponent, {
+                context: {
+                  title: 'THẤT BẠI',
+                  content: err.error
+                }
+              })
+            }
+          )
       }
     })
   }
- 
+
   onUpdate(id: string) {
     this.router.navigateByUrl("/home/staff/update/" + id)
   }

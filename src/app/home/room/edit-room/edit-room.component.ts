@@ -35,24 +35,24 @@ export class EditRoomComponent implements OnInit {
       this.initFrm()
     })
     this.roomTypeSV.List
-    .subscribe(res => {
+      .subscribe(res => {
         this.listType = res
       },
-      err => {
-        this.dialog.open(DialogResultComponent, {
-          context: {
-            title: 'Error',
-            content: 'Can not load list room type \n' + err.error
-          }
+        err => {
+          this.dialog.open(DialogResultComponent, {
+            context: {
+              title: 'THẤT BẠI',
+              content: 'Không thể load phòng \n' + err.error
+            }
+          })
         })
-      })
   }
 
   initFrm() {
     this.formEdit = this.roomService.getFormUpdate(this.id);
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.formEdit.get(ctrl).invalid && this.formEdit.get(ctrl).touched
   }
 
@@ -66,21 +66,21 @@ export class EditRoomComponent implements OnInit {
       child: this.formEdit.get('child').value,
       price: this.formEdit.get('price').value
     })
-    .subscribe(
-      res => {
-        console.log(res)
-        this.toast.show('Edit room success', 'EDIT ROOM', {status:'success'})
-        this.router.navigateByUrl('/home/room/details/' + this.id)
-      },
-      err => {
-        console.log(err)
-        this.dialog.open(DialogResultComponent, {
-          context: {
-            title: 'Error when update',
-            content: err.error
-          }
-        })
-      }
-    )
+      .subscribe(
+        res => {
+          console.log(res)
+          this.toast.show('Sửa phòng thành công', 'THÀNH CÔNG', { status: 'success' })
+          this.router.navigateByUrl('/home/room/details/' + this.id)
+        },
+        err => {
+          console.log(err)
+          this.dialog.open(DialogResultComponent, {
+            context: {
+              title: 'THẤT BẠI',
+              content: err.error
+            }
+          })
+        }
+      )
   }
 }

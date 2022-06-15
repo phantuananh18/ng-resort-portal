@@ -34,24 +34,24 @@ export class DistributionComponent implements OnInit {
         value: this.roomID,
         disabled: !this.isAdd
       }, [Validators.required]],
-      count: [0,[
+      count: [0, [
         Validators.required,
         Validators.min(1),
         Validators.max(this.supply.total)
       ]]
     })
-    if(this.roomID != null) {
+    if (this.roomID != null) {
       this.formDistribute.get('roomID').setValue(this.roomID)
       this.formDistribute.get('roomID').disable
     }
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.formDistribute.get(ctrl).invalid && this.formDistribute.get(ctrl).touched
   }
 
   submit() {
-    if(this.isAdd) this.GiveSP()
+    if (this.isAdd) this.GiveSP()
     else this.removeSP()
   }
 
@@ -62,11 +62,11 @@ export class DistributionComponent implements OnInit {
       count: this.formDistribute.get('count').value
     }).subscribe(
       res => {
-        this.toast.show('Distribution success', 'SUCCESS', {status:'success'})
+        this.toast.show('Thêm thành công', 'THÀNH CÔNG', { status: 'success' })
         this.ref.close(true)
       },
       err => {
-        this.toast.show(err.error, 'ERROR', {status:'danger'})
+        this.toast.show(err.error, 'THÊM THẤT BẠI', { status: 'danger' })
       }
     )
   }
@@ -78,11 +78,11 @@ export class DistributionComponent implements OnInit {
       count: this.formDistribute.get('count').value
     }).subscribe(
       res => {
-        this.toast.show('Remove success', 'REMOVE', {status:'success'})
+        this.toast.show('Xóa thành công', 'XÓA', { status: 'success' })
         this.ref.close(true)
       },
       err => {
-        this.toast.show(err.error, 'REMOVE ERROR', {status:'danger'})
+        this.toast.show(err.error, 'XÓA THẤT BẠI', { status: 'danger' })
       }
     )
   }

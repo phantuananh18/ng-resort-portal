@@ -13,9 +13,9 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 })
 export class DetailsVoucherComponent implements OnInit {
   voucher: Voucher;
-  canEdit:boolean
+  canEdit: boolean
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private voucherService: VoucherService,
     private dialog: NbDialogService,
     private router: Router,
@@ -26,11 +26,11 @@ export class DetailsVoucherComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       this.voucherService.getByID(id)
-      .subscribe(
-        res => {
-          this.voucher = res
-        }
-      )
+        .subscribe(
+          res => {
+            this.voucher = res
+          }
+        )
     })
     this.authService.getToken().subscribe(
       token => {
@@ -46,27 +46,27 @@ export class DetailsVoucherComponent implements OnInit {
   onRemove(id: string) {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Are you want to remove voucher?`,
-        content: `voucher code: ${id}`
+        title: `Bạn có muốn xóa voucher này không ?`,
+        content: `Mã voucher: ${id}`
       }
     }).onClose.subscribe(result => {
-      if(result) {
+      if (result) {
         this.voucherService.removeVoucher(id)
-        .subscribe(
-          res => {
-            this.toast.show('Remove success', 'REMOVE', {status:'success'})
-            this.router.navigateByUrl("/home/voucher")
-          },
-          err => {
-            this.dialog.open(DialogResultComponent, {
-              context: {
-                title: 'ERROR',
-                content: err.error
-              }
-            })
-          }
-        )
-        
+          .subscribe(
+            res => {
+              this.toast.show('Xóa voucher thành công', 'THÀNH CÔNG', { status: 'success' })
+              this.router.navigateByUrl("/home/voucher")
+            },
+            err => {
+              this.dialog.open(DialogResultComponent, {
+                context: {
+                  title: 'THẤT BẠI',
+                  content: err.error
+                }
+              })
+            }
+          )
+
       }
     })
   }

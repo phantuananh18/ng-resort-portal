@@ -82,7 +82,7 @@ export class RoomManagementComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Bạn có muốn xóa không ?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();

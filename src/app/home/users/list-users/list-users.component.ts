@@ -98,8 +98,8 @@ export class ListUsersComponent implements OnInit {
   onDeleteConfirm(event): void {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: 'Are you want to remove this customer?',
-        content: `Customer ${event.data?.id}`
+        title: 'Bạn có muốn xóa khách hàng này ?',
+        content: `Mã khách hàng ${event.data?.id}`
       }
     }).onClose.subscribe(result => {
       if (result) {

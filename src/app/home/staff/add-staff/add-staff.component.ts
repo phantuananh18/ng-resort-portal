@@ -73,7 +73,7 @@ export class AddStaffComponent implements OnInit {
         err => {
           this.dialog.open(DialogResultComponent, {
             context: {
-              title: 'Error when create',
+              title: 'THẤT BẠI',
               content: err.error
             }
           })

@@ -87,7 +87,7 @@ export class UpdateStaffComponent implements OnInit {
         err => {
           this.dialog.open(DialogResultComponent, {
             context: {
-              title: 'Error update',
+              title: 'THẤT BẠI',
               content: err.error
             }
           })

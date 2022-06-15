@@ -12,7 +12,7 @@
               <input type="text" formControlName="id" nbInput fullWidth id="RoomID" placeholder="Mã phòng"
                 [status]="getConfig('id') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('id')" class="text-danger">
-                <span *ngIf="frmRoom.get('id').errors.required">Mã phòng không được bỏ trống!</span>
+                <span *ngIf="frmRoom.get('id').errors.required">Mã phòng không được bỏ trống</span>
                 <span *ngIf="frmRoom.get('id').errors?.minlength">
                   Mã phòng có ít nhất
                   {{ frmRoom.get("id").errors?.minlength.requiredLength }}
@@ -38,7 +38,7 @@
                 [status]="getConfig('name') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('name')" class="text-danger">
                 <span *ngIf="frmRoom.get('name').errors.required">
-                  Tên phòng không được bỏ trống!
+                  Tên phòng không được bỏ trống
                 </span>
                 <span *ngIf="frmRoom.get('name').errors?.minlength">
                   Tên phòng ít nhất
@@ -59,7 +59,8 @@
             <div class="col-sm-9">
               <nb-select fullWidth formControlName="type" placeholder="Loại phòng" shape="semi-round" id="Room type"
                 [status]="getConfig('type') ? 'danger' : 'basic'">
-                <nb-option *ngFor="let item of listType" [value]="item.id">{{ item.nameType }} (ID: {{ item.id }})
+                <nb-option *ngFor="let item of listType" [value]="item.id">{{ item.nameType }} (ID:
+                  {{ item.id }})
                 </nb-option>
               </nb-select>
               <span *ngIf="getConfig('type')" class="text-danger">
@@ -96,7 +97,7 @@
                   <input type="number" formControlName="adult" nbInput fullWidth id="adult" placeholder="Người lớn"
                     [status]="getConfig('adult') ? 'danger' : 'basic'" />
                   <span *ngIf="getConfig('adult')" class="text-danger">
-                    <span *ngIf="frmRoom.get('adult').errors.required">Adult is required</span>
+                    <span *ngIf="frmRoom.get('adult').errors.required">Yêu cầu không bỏ trống</span>
                     <span *ngIf="frmRoom.get('adult').errors.min">Adult is min at
                       {{ frmRoom.get("adult").errors.min.min }}</span>
                     <span *ngIf="frmRoom.get('adult').errors.max">Adult is max at
@@ -114,7 +115,7 @@
                   <input type="number" formControlName="child" nbInput fullWidth id="child" placeholder="Trẻ em"
                     [status]="getConfig('child') ? 'danger' : 'basic'" />
                   <span *ngIf="getConfig('child')" class="text-danger">
-                    <span *ngIf="frmRoom.get('child').errors.required">Child is required</span>
+                    <span *ngIf="frmRoom.get('child').errors.required">Yêu cầu không bỏ trống</span>
                     <span *ngIf="frmRoom.get('child').errors.min">Child is min at
                       {{ frmRoom.get("child").errors.min.min }}</span>
                     <span *ngIf="frmRoom.get('child').errors.max">Child is max at
@@ -133,7 +134,7 @@
                 [status]="getConfig('description') ? 'danger' : 'basic'">
               </textarea>
               <span *ngIf="getConfig('description')" class="text-danger">
-                <span *ngIf="frmRoom.get('description').errors.required">Description is required</span>
+                <span *ngIf="frmRoom.get('description').errors.required">Mô tả phòng không được bỏ trống</span>
               </span>
             </div>
           </div>

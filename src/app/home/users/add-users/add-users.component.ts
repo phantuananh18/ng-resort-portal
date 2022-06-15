@@ -21,7 +21,7 @@ export class AddUsersComponent implements OnInit {
   ngOnInit(): void {
     this.formAddUser = this.fb.group({
       id: ['', [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
         Validators.pattern('^[a-z0-9A-Z]{6,20}$')
@@ -31,7 +31,7 @@ export class AddUsersComponent implements OnInit {
         Validators.maxLength(50)
       ]],
       password: ['', [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
         Validators.pattern('^[a-z0-9A-Z]{6,20}$')
@@ -57,13 +57,13 @@ export class AddUsersComponent implements OnInit {
       email: this.formAddUser.get('email').value
     }).subscribe(
       res => {
-        this.toast.show('ADD CUSTOMER', 'Add new success', {status:'success'})
+        this.toast.show('Thên khách hàng thành công', 'THÀNH CÔNG', { status: 'success' })
         this.router.navigateByUrl('/home/user')
       },
       err => {
-        this.dialog.open(DialogResultComponent,{
+        this.dialog.open(DialogResultComponent, {
           context: {
-            title: 'ERROR CREATE!!!',
+            title: 'THẤT BẠI',
             content: err.error
           }
         })

@@ -23,7 +23,7 @@ export class AddVoucherComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       code: ['', [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(2),
         Validators.maxLength(10),
         Validators.pattern('^[0-9A-Z]{2,10}$')
@@ -31,14 +31,14 @@ export class AddVoucherComponent implements OnInit {
       fromDate: [new Date(), [
         Validators.required
       ]],
-      toDate: [this.dateService.addDay(new Date(),1), [
+      toDate: [this.dateService.addDay(new Date(), 1), [
         Validators.required
       ]],
-      condition: ['',[
+      condition: ['', [
         Validators.required,
         Validators.min(0),
       ]],
-      discount:['',[
+      discount: ['', [
         Validators.required,
         Validators.min(1),
         Validators.max(100)
@@ -55,13 +55,13 @@ export class AddVoucherComponent implements OnInit {
       discount: this.getValueFrm('discount')
     }).subscribe(
       res => {
-        this.toast.show('Add success', 'ADD', { status: 'success'}),
-        this.router.navigateByUrl('/home/voucher/details/' + this.getValueFrm('code'))
+        this.toast.show('Thêm voucher thành công', 'THÀNH CÔNG', { status: 'success' }),
+          this.router.navigateByUrl('/home/voucher/details/' + this.getValueFrm('code'))
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
-            title: 'ERROR',
+            title: 'THẤT BẠI',
             content: err.error
           }
         })
@@ -81,7 +81,7 @@ export class AddVoucherComponent implements OnInit {
     return this.form.get(ctrl).value
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 }

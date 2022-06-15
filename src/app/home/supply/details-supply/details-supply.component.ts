@@ -41,13 +41,13 @@ export class DetailsSupplyComponent implements OnInit {
   onRemove(id: string) {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Are you want to remove supply?`,
-        content: `Supply id: ${id}`
+        title: `Bạn có muốn xóa vật tư ?`,
+        content: `Mã vật tư: ${id}`
       }
     }).onClose.subscribe(result => {
       if (result) {
         this.supplyService.removeSupply(id).subscribe(res => {
-          this.toast.show('REMOVE SUCCESS', 'REMOVE', { status: 'success' })
+          this.toast.show('Xóa vật tư thành công', 'THÀNH CÔNG', { status: 'success' })
           this.router.navigateByUrl("/home/supply")
         })
       }

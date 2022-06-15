@@ -5,95 +5,68 @@
       <nb-card-body>
         <form novalidate [formGroup]="formAddUser">
           <div class="form-group row">
-            <label for="UserId" class="label col-sm-3 col-form-label"
-              >Mã số khách hàng:
+            <label for="UserId" class="label col-sm-3 col-form-label">Mã số khách hàng:
             </label>
             <div class="col-sm-9">
-              <input
-                type="text"
-                formControlName="id"
-                nbInput
-                fullWidth
-                id="UserId"
-                placeholder="Nhập mã khách hàng"
-                [status]="getConfig('id') ? 'danger' : 'basic'"
-              />
-              <span
-                *ngIf="
+              <input type="text" formControlName="id" nbInput fullWidth id="UserId" placeholder="Nhập mã khách hàng"
+                [status]="getConfig('id') ? 'danger' : 'basic'" />
+              <span *ngIf="
                   formAddUser.get('id').invalid &&
                   formAddUser.controls.id?.touched
-                "
-                class="text-danger"
-              >
-                <span *ngIf="formAddUser.get('id').errors.required"
-                  >ID is required</span
-                >
+                " class="text-danger">
+                <span *ngIf="formAddUser.get('id').errors.required">Vui lòng nhập mã khách hàng</span>
                 <span *ngIf="formAddUser.get('id').errors?.minlength">
-                  User ID at least
+                  Mã khách hàng ít nhất
                   {{
-                    formAddUser.get("id").errors?.minlength.requiredLength
+                  formAddUser.get("id").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="formAddUser.get('id').errors?.maxlength">
-                  User ID at most
+                  Mã khách hàng tối đa
                   {{
-                    formAddUser.get("id").errors?.maxlength.requiredLength
+                  formAddUser.get("id").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="formAddUser.get('id').errors?.pattern">
-                  User ID is invalid
+                  Mã khách hàng không hợp lệ
                 </span>
               </span>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="name" class="label col-sm-3 col-form-label"
-              >Họ tên:
+            <label for="name" class="label col-sm-3 col-form-label">Họ tên:
             </label>
             <div class="col-sm-9">
-              <input
-                type="text"
-                formControlName="name"
-                nbInput
-                fullWidth
-                id="name"
-                placeholder="Nhập họ tên"
-                [status]="getConfig('name') ? 'danger' : 'basic'"
-              />
-              <span
-                *ngIf="
+              <input type="text" formControlName="name" nbInput fullWidth id="name" placeholder="Nhập họ tên"
+                [status]="getConfig('name') ? 'danger' : 'basic'" />
+              <span *ngIf="
                   formAddUser.get('name').invalid &&
                   formAddUser.get('name').touched
-                "
-                class="text-danger"
-              >
-                <span *ngIf="formAddUser.get('name').errors.required"
-                  >Name is required</span
-                >
+                " class="text-danger">
+                <span *ngIf="formAddUser.get('name').errors.required">Yêu cầu nhập họ tên</span>
                 <span *ngIf="formAddUser.get('name').errors?.minlength">
-                  Name at least
+                  Họ tên ít nhất
                   {{
-                    formAddUser.get("name").errors?.minlength.requiredLength
+                  formAddUser.get("name").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="formAddUser.get('name').errors?.maxlength">
-                  Name at most
+                  Họ tên tối đa
                   {{
-                    formAddUser.get("name").errors?.maxlength.requiredLength
+                  formAddUser.get("name").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
               </span>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="gender" class="label col-sm-3 col-form-label"
-              >Giới tính:
+            <label for="gender" class="label col-sm-3 col-form-label">Giới tính:
             </label>
             <div class="col-sm-9" id="gender">
               <nb-radio-group formControlName="gender">
@@ -104,131 +77,82 @@
           </div>
 
           <div class="form-group row">
-            <label for="birth" class="label col-sm-3 col-form-label"
-              >Ngày sinh:
+            <label for="birth" class="label col-sm-3 col-form-label">Ngày sinh:
             </label>
             <div class="col-sm-9" id="birth">
-              <input
-                formControlName="birth"
-                nbInput
-                fullWidth
-                placeholder="Nhập ngày sinh"
-                [nbDatepicker]="dateTimePicker"
-                [status]="getConfig('birth') ? 'danger' : 'basic'"
-              />
+              <input formControlName="birth" nbInput fullWidth placeholder="Nhập ngày sinh"
+                [nbDatepicker]="dateTimePicker" [status]="getConfig('birth') ? 'danger' : 'basic'" />
               <nb-datepicker #dateTimePicker></nb-datepicker>
-              <span
-                *ngIf="
+              <span *ngIf="
                   formAddUser.get('birth').invalid &&
                   formAddUser.get('birth').touched
-                "
-                class="text-danger"
-              >
-                <span *ngIf="formAddUser.get('birth').errors.required"
-                  >Birth is required</span
-                >
+                " class="text-danger">
+                <span *ngIf="formAddUser.get('birth').errors.required">Yêu cầu nhập ngày sinh</span>
               </span>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="pass" class="label col-sm-3 col-form-label"
-              >Mật khẩu:
+            <label for="pass" class="label col-sm-3 col-form-label">Mật khẩu:
             </label>
             <div class="col-sm-9">
-              <input
-                type="password"
-                formControlName="password"
-                nbInput
-                fullWidth
-                id="pass"
-                placeholder="Nhập mật khẩu"
-                [status]="getConfig('password') ? 'danger' : 'basic'"
-              />
-              <span
-                *ngIf="
+              <input type="password" formControlName="password" nbInput fullWidth id="pass" placeholder="Nhập mật khẩu"
+                [status]="getConfig('password') ? 'danger' : 'basic'" />
+              <span *ngIf="
                   formAddUser.get('password').invalid &&
                   formAddUser.get('password').touched
-                "
-                class="text-danger"
-              >
-                <span *ngIf="formAddUser.get('password').errors.required"
-                  >Password is required</span
-                >
+                " class="text-danger">
+                <span *ngIf="formAddUser.get('password').errors.required">Yêu cầu nhập mật khẩu</span>
                 <span *ngIf="formAddUser.get('password').errors?.minlength">
-                  Password at least
+                  Mật khẩu ít nhất
                   {{
-                    formAddUser.get("password").errors?.minlength.requiredLength
+                  formAddUser.get("password").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="formAddUser.get('password').errors?.maxlength">
-                  Password at most
+                  Mật khẩu tối đa
                   {{
-                    formAddUser.get("password").errors?.maxlength.requiredLength
+                  formAddUser.get("password").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="formAddUser.get('password').errors?.pattern">
-                  Password is invalid
+                  Mật khẩu không hợp lệ
                 </span>
               </span>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="phone" class="label col-sm-3 col-form-label"
-              >SĐT:
+            <label for="phone" class="label col-sm-3 col-form-label">SĐT:
             </label>
             <div class="col-sm-9">
-              <input
-                type="tel"
-                formControlName="phone"
-                nbInput
-                fullWidth
-                id="phone"
-                placeholder="Nhập số điện thoại"
-                [status]="getConfig('phone') ? 'danger' : 'basic'"
-              />
-              <span
-                *ngIf="
+              <input type="tel" formControlName="phone" nbInput fullWidth id="phone" placeholder="Nhập số điện thoại"
+                [status]="getConfig('phone') ? 'danger' : 'basic'" />
+              <span *ngIf="
                   formAddUser.get('phone').invalid &&
                   formAddUser.get('phone').touched
-                "
-                class="text-danger"
-              >
-                <span *ngIf="formAddUser.get('phone').errors.required"
-                  >Phone is required</span
-                >
+                " class="text-danger">
+                <span *ngIf="formAddUser.get('phone').errors.required">Yêu cầu nhập số điện thoại</span>
                 <span *ngIf="formAddUser.get('phone').errors?.pattern">
-                  Phone is invalid
+                  Số điện thoại không hợp lệ
                 </span>
               </span>
             </div>
           </div>
           <div class="form-group row">
-            <label for="email" class="label col-sm-3 col-form-label"
-              >Email:
+            <label for="email" class="label col-sm-3 col-form-label">Email:
             </label>
             <div class="col-sm-9">
-              <input
-                type="email"
-                formControlName="email"
-                nbInput
-                fullWidth
-                id="email"
-                placeholder="Nhập email"
-                [status]="getConfig('email') ? 'danger' : 'basic'"
-              />
-              <span
-                *ngIf="
+              <input type="email" formControlName="email" nbInput fullWidth id="email" placeholder="Nhập email"
+                [status]="getConfig('email') ? 'danger' : 'basic'" />
+              <span *ngIf="
                   formAddUser.get('email').invalid &&
                   formAddUser.get('email').touched
-                "
-                class="text-danger"
-              >
+                " class="text-danger">
                 <span *ngIf="formAddUser.get('email').errors?.email">
-                  Email is invalid
+                  Email không hợp lệ
                 </span>
               </span>
             </div>
@@ -238,25 +162,12 @@
       <nb-card-footer>
         <div class="row">
           <div class="col-md-4 col-12">
-            <button
-              fullWidth
-              nbButton
-              hero
-              status="primary"
-              (click)="addUser()"
-              [disabled]="!formAddUser.valid"
-            >
+            <button fullWidth nbButton hero status="primary" (click)="addUser()" [disabled]="!formAddUser.valid">
               THÊM MỚI
             </button>
           </div>
           <div class="offset-md-4 col-md-4 col-12">
-            <button
-              fullWidth
-              nbButton
-              hero
-              status="danger"
-              (click)="resetForm()"
-            >
+            <button fullWidth nbButton hero status="danger" (click)="resetForm()">
               NHẬP LẠI
             </button>
           </div>

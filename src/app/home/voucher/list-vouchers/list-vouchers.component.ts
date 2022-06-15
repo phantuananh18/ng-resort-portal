@@ -83,7 +83,7 @@ export class ListVouchersComponent implements OnInit {
   onDeleteConfirm(event): void {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: 'Bạn có muốn xóa mã voucher này không?',
+        title: 'Bạn có muốn xóa mã voucher này không ?',
         content: `Voucher ${event.data?.code}`
       }
     }).onClose.subscribe(result => {

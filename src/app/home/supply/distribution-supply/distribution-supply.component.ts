@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DistributionSupplyComponent implements OnInit {
   settings = {
-    actions:{
+    actions: {
       add: false,
       edit: false,
     },
@@ -22,12 +22,12 @@ export class DistributionSupplyComponent implements OnInit {
     },
     columns: {
       roomID: {
-        title: 'Room ID',
+        title: 'Mã phòng',
         type: 'string',
         filter: true
       },
       room: {
-        title: 'Room name',
+        title: 'Tên phòng',
         type: 'string',
         valuePrepareFunction: (data) => {
           return data.name
@@ -70,19 +70,19 @@ export class DistributionSupplyComponent implements OnInit {
         isAdd: true
       }
     }).onClose.subscribe(
-      res => { if(res) this.loadSP() }
+      res => { if (res) this.loadSP() }
     )
   }
   onDeleteConfirm(event) {
     console.log(event.data)
     this.dialog.open(DistributionComponent, {
-      context:{
+      context: {
         supply: this.supply,
         roomID: event.data.roomID,
         isAdd: false
       }
     }).onClose.subscribe(
-      res => { if(res) this.loadSP() }
+      res => { if (res) this.loadSP() }
     )
   }
 }

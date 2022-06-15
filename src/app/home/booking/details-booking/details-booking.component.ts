@@ -27,7 +27,7 @@ export class DetailsBookingComponent implements OnInit {
 
   loadData() {
     this.route.params.subscribe((params: Params) => {
-      if(params['id'] != null) {
+      if (params['id'] != null) {
         this.bookingService.SelectBooking(params['id']).subscribe(res => {
           this.bill = res;
         })
@@ -38,14 +38,14 @@ export class DetailsBookingComponent implements OnInit {
   getPrice() {
     let from = new Date(this.bill.checkinDate).getTime()
     let to = new Date(this.bill.checkoutDate).getTime()
-    let price:number = this.bill.room.price * Math.round((to-from)/(1000*3600*24))
-    if(this.bill.services.length > 0) {
+    let price: number = this.bill.room.price * Math.round((to - from) / (1000 * 3600 * 24))
+    if (this.bill.services.length > 0) {
       this.bill.services.forEach(value => {
         price += value.service.price
       })
     }
-    if(this.bill.voucherCode != null) {
-      price *= ((100 - this.bill.voucher.discount)/100)
+    if (this.bill.voucherCode != null) {
+      price *= ((100 - this.bill.voucher.discount) / 100)
     }
     return Math.round(price)
   }
@@ -61,13 +61,13 @@ export class DetailsBookingComponent implements OnInit {
   RemoveBooking() {
     this.bookingService.DeleteBooking(this.bill.id).subscribe(
       res => {
-        this.toastr.show(`Remove bill #${this.bill.id} success`, 'Remove', {status:'success'})
+        this.toastr.show(`Xóa hóa đơn #${this.bill.id} thành công`, 'XÓA', { status: 'success' })
         this.router.navigateByUrl('/home/booking')
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
-            title:'ERROR REMOVE',
+            title: 'THẤT BẠI',
             content: err.error
           }
         })
@@ -78,11 +78,11 @@ export class DetailsBookingComponent implements OnInit {
   CheckBooking(status: string) {
     this.bookingService.CheckBooking(this.bill.id, status).subscribe(
       res => {
-        this.toastr.show('Confirm success', 'Confirm', {status: 'success'})
+        this.toastr.show('Hủy hóa đơn thành công', 'THÀNH CÔNG', { status: 'success' })
         this.loadData()
       },
       err => {
-        this.toastr.show('Confirm failed', 'Confirm', {status: 'danger'})
+        this.toastr.show('Hủy hóa đơn thất bại', 'HỦY', { status: 'danger' })
       }
     )
   }

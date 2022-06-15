@@ -12,98 +12,57 @@
         <form novalidate [formGroup]="form">
           <!-- Select Room -->
           <div class="form-group row">
-            <label for="room" class="label col-sm-3 col-form-label"
-              >Phòng thuê:
-            </label>
+            <label for="room" class="label col-sm-3 col-form-label">Phòng thuê:</label>
             <div class="col-sm-9">
-              <nb-select
-                fullWidth
-                formControlName="room"
-                placeholder="Chọn phòng thuê"
-                shape="semi-round"
-                id="Room"
-                [status]="getConfig('room') ? 'danger' : 'basic'"
-              >
+              <nb-select fullWidth formControlName="room" placeholder="Chọn phòng thuê" shape="semi-round" id="Room"
+                [status]="getConfig('room') ? 'danger' : 'basic'">
                 <nb-option *ngFor="let item of rooms" [value]="item.id">
                   {{ item.name }} (Mã phòng: {{ item.id }})
                 </nb-option>
               </nb-select>
               <span *ngIf="getConfig('room')" class="text-danger">
-                Phòng thuê không được để trống!
+                Vui lòng nhập mã phòng
               </span>
             </div>
           </div>
           <!-- Select Customer -->
           <div class="form-group row">
-            <label for="customer" class="label col-sm-3 col-form-label"
-              >Khách thuê:
-            </label>
+            <label for="customer" class="label col-sm-3 col-form-label">Khách thuê:</label>
             <div class="col-sm-9">
-              <nb-select
-                fullWidth
-                formControlName="customer"
-                placeholder="Chọn khách hàng thuê"
-                shape="semi-round"
-                id="Customer"
-                [status]="getConfig('customer') ? 'danger' : 'basic'"
-              >
-                <nb-option *ngFor="let item of customers" [value]="item.id"
-                  >{{ item.name }} (Mã khách hàng: {{ item.id }})</nb-option
-                >
+              <nb-select fullWidth formControlName="customer" placeholder="Chọn khách hàng thuê" shape="semi-round"
+                id="Customer" [status]="getConfig('customer') ? 'danger' : 'basic'">
+                <nb-option *ngFor="let item of customers" [value]="item.id">
+                  {{ item.name }} (Mã khách hàng: {{ item.id }})</nb-option>
               </nb-select>
               <span *ngIf="getConfig('customer')" class="text-danger">
-                Khách thuê không được để trống!
+                Vui lòng nhập mã khách hàng
               </span>
             </div>
           </div>
           <!-- Check in -->
           <div class="form-group row">
-            <label for="checkin" class="label col-sm-3 col-form-label"
-              >Ngày check in:
-            </label>
+            <label for="checkin" class="label col-sm-3 col-form-label">Ngày check in:</label>
             <div class="col-sm-9" id="checkin">
-              <input
-                formControlName="checkin"
-                nbInput
-                fullWidth
-                placeholder="Check in Date"
-                [nbDatepicker]="checkin"
-                [status]="getConfig('checkin') ? 'danger' : 'basic'"
-              />
-              <nb-datepicker
-                #checkin
-                [min]="minCheckin"
-                [max]="maxCheckin"
-              ></nb-datepicker>
+              <input formControlName="checkin" nbInput fullWidth placeholder="Check in Date" [nbDatepicker]="checkin"
+                [status]="getConfig('checkin') ? 'danger' : 'basic'" />
+              <nb-datepicker #checkin [min]="minCheckin" [max]="maxCheckin">
+              </nb-datepicker>
               <span *ngIf="getConfig('checkin')" class="text-danger">
-                <span *ngIf="form.get('checkin').errors.required"
-                  >Ngày checkin không được để trống!</span
-                >
+                <span *ngIf="form.get('checkin').errors.required">Vui lòng nhập ngày checkin</span>
               </span>
             </div>
           </div>
           <!---- Check out ---->
           <div class="form-group row">
-            <label for="checkin" class="label col-sm-3 col-form-label"
-              >Ngày check out:
-            </label>
+            <label for="checkin" class="label col-sm-3 col-form-label">Ngày check out:</label>
             <div class="col-sm-9" id="checkout">
-              <input
-                formControlName="checkout"
-                nbInput
-                fullWidth
-                placeholder="Check out Date"
-                [nbDatepicker]="checkout"
-                [status]="getConfig('checkout') ? 'danger' : 'basic'"
-              />
-              <nb-datepicker
-                #checkout
-                [min]="minCheckout"
-                [max]="maxCheckout"
-              ></nb-datepicker>
+              <input formControlName="checkout" nbInput fullWidth placeholder="Check out Date" [nbDatepicker]="checkout"
+                [status]="getConfig('checkout') ? 'danger' : 'basic'" />
+              <nb-datepicker #checkout [min]="minCheckout" [max]="maxCheckout">
+              </nb-datepicker>
               <span *ngIf="getConfig('checkin')" class="text-danger">
                 <span *ngIf="form.get('checkin').errors.required">
-                  Ngày checkout không được để trống!
+                  Vui lòng nhập ngày checkout
                 </span>
               </span>
             </div>
@@ -114,25 +73,16 @@
             <!-- Adult -->
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="adult" class="label col-sm-3 col-form-label"
-                  >Người lớn:
-                </label>
+                <label for="adult" class="label col-sm-3 col-form-label">Người lớn:</label>
                 <div class="col-sm-9">
-                  <input
-                    type="number"
-                    formControlName="adult"
-                    nbInput
-                    fullWidth
-                    id="adult"
-                    placeholder="Adult"
-                    [status]="getConfig('adult') ? 'danger' : 'basic'"
-                  />
+                  <input type="number" formControlName="adult" nbInput fullWidth id="adult" placeholder="Adult"
+                    [status]="getConfig('adult') ? 'danger' : 'basic'" />
                   <span *ngIf="getConfig('adult')" class="text-danger">
                     <span *ngIf="form.get('adult').errors.required">
-                      Yêu cầu không được để trống!
+                      Vui lòng nhập số lượng người lớn
                     </span>
                     <span *ngIf="form.get('adult').errors.min">
-                      Adult is min at {{ form.get("adult").errors.min.min }}
+                      Số lượng không được nhỏ hơn {{ form.get("adult").errors.min.min }}
                     </span>
                   </span>
                 </div>
@@ -141,23 +91,13 @@
             <!-- Child -->
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="child" class="label col-sm-3 col-form-label"
-                  >Trẻ em:
-                </label>
+                <label for="child" class="label col-sm-3 col-form-label">Trẻ em:</label>
                 <div class="col-sm-9">
-                  <input
-                    type="number"
-                    formControlName="child"
-                    nbInput
-                    fullWidth
-                    id="child"
-                    placeholder="Child"
-                    [status]="getConfig('child') ? 'danger' : 'basic'"
-                  />
+                  <input type="number" formControlName="child" nbInput fullWidth id="child" placeholder="Child"
+                    [status]="getConfig('child') ? 'danger' : 'basic'" />
                   <span *ngIf="getConfig('child')" class="text-danger">
                     <span *ngIf="form.get('child').errors.min">
-                      Child is min at
-                      {{ form.get("child").errors.min.min }}
+                      Số lượng không được nhỏ hơn {{ form.get("child").errors.min.min }}
                     </span>
                   </span>
                 </div>
@@ -166,19 +106,13 @@
           </div>
           <!-- Voucher -->
           <div class="form-group row">
-            <label for="voucher" class="label col-sm-3 col-form-label"
-              >Mã ưu đãi:
-            </label>
+            <label for="voucher" class="label col-sm-3 col-form-label">Mã ưu đãi:</label>
             <div class="col-sm-9">
-              <input
-                type="text"
-                formControlName="voucher"
-                nbInput
-                fullWidth
-                id="Voucher"
-                placeholder="Nhập mã voucher"
-                [status]="getConfig('voucher') ? 'danger' : 'basic'"
-              />
+              <input type="text" formControlName="voucher" nbInput fullWidth id="Voucher" placeholder="Nhập mã voucher"
+                [status]="getConfig('voucher') ? 'danger' : 'basic'" />
+              <span *ngIf="form.get('voucher').errors.required">
+                Yêu cầu nhập mã ưu đãi
+              </span>
             </div>
           </div>
         </form>
@@ -188,26 +122,12 @@
       <nb-card-footer>
         <div class="row">
           <div class="col-md-4 col-12">
-            <button
-              nbButton
-              fullWidth
-              hero
-              status="primary"
-              (click)="submitForm()"
-              [disabled]="!form.invalid"
-            >
+            <button nbButton fullWidth hero status="primary" (click)="submitForm()" [disabled]="!form.invalid">
               XÁC NHẬN
             </button>
           </div>
           <div class="offset-md-4 col-md-4 col-12">
-            <button
-              type="button"
-              nbButton
-              fullWidth
-              hero
-              status="danger"
-              (click)="resetFrm()"
-            >
+            <button type="button" nbButton fullWidth hero status="danger" (click)="resetFrm()">
               NHẬP LẠI
             </button>
           </div>

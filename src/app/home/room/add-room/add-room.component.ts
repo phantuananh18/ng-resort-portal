@@ -32,8 +32,8 @@ export class AddRoomComponent implements OnInit {
         err => {
           this.dialog.open(DialogResultComponent, {
             context: {
-              title: 'Error',
-              content: 'Can not load list room type \n' + err.error
+              title: 'THẤT BẠI',
+              content: 'Không thể load loại phòng \n' + err.error
             }
           })
         })
@@ -50,13 +50,13 @@ export class AddRoomComponent implements OnInit {
       description: this.frmRoom.get('description').value
     }).subscribe(
       res => {
-        this.toast.show('Add Room', 'Add new room successful', { status: 'success' })
+        this.toast.show('Thêm phòng thành công', 'THÀNH CÔNG', { status: 'success' })
         this.router.navigateByUrl('/room/details/' + this.frmRoom.get('id').value)
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
-            title: 'Lỗi!!!',
+            title: 'THẤT BẠI',
             content: err.error
           }
         })

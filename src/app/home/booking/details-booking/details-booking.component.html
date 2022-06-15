@@ -2,35 +2,17 @@
   <nb-card-header>
     <nb-actions size="small">
       <nb-action> Thông tin hóa đơn: #{{ bill.id }} </nb-action>
-      <nb-action
-        *ngIf="bill.status == null"
-        nbTooltip="Xác nhận hóa đơn"
-        icon="checkmark-circle-2-outline"
-        (click)="CheckBooking('confirm')"
-      ></nb-action>
+      <nb-action *ngIf="bill.status == null" nbTooltip="Xác nhận hóa đơn" icon="checkmark-circle-2-outline"
+        (click)="CheckBooking('confirm')"></nb-action>
 
-      <nb-action
-        *ngIf="bill.status == 'checkout'"
-        nbTooltip="Xác nhận thanh toán"
-        icon="credit-card-outline"
-        (click)="CheckBooking('payment')"
-      ></nb-action>
+      <nb-action *ngIf="bill.status == 'checkout'" nbTooltip="Xác nhận thanh toán" icon="credit-card-outline"
+        (click)="CheckBooking('payment')"></nb-action>
 
-      <nb-action
-        *ngIf="isCheckin"
-        nbTooltip="Xác nhận Check in"
-        icon="calendar-outline"
-        (click)="CheckBooking('checkin')"
-        >Check in</nb-action
-      >
+      <nb-action *ngIf="isCheckin" nbTooltip="Xác nhận Check in" icon="calendar-outline"
+        (click)="CheckBooking('checkin')">Check in</nb-action>
 
-      <nb-action
-        *ngIf="isCheckout"
-        nbTooltip="Xác nhận Checkout"
-        icon="calendar-outline"
-        (click)="CheckBooking('checkout')"
-        >Check out</nb-action
-      >
+      <nb-action *ngIf="isCheckout" nbTooltip="Xác nhận Checkout" icon="calendar-outline"
+        (click)="CheckBooking('checkout')">Check out</nb-action>
       <nb-action [icon]="disabledIconConfig" disabled></nb-action>
     </nb-actions>
   </nb-card-header>
@@ -120,50 +102,22 @@
   <nb-card-footer>
     <div class="row" *ngIf="CanEdit()">
       <div class="col-md-4 col-12">
-        <button
-          hero
-          fullWidth
-          nbButton
-          shape="semi-round"
-          status="info"
-          (click)="EditBooking()"
-        >
+        <button hero fullWidth nbButton shape="semi-round" status="info" (click)="EditBooking()">
           <i class="fas fa-edit"></i>&emsp;Cập nhật thông tin
         </button>
       </div>
       <div class="col-md-4 col-12">
-        <button
-          hero
-          fullWidth
-          nbButton
-          shape="semi-round"
-          status="info"
-          (click)="CallService()"
-        >
+        <button hero fullWidth nbButton shape="semi-round" status="info" (click)="CallService()">
           <i class="fas fa-concierge-bell"></i>&emsp;Dịch vụ sử dụng
         </button>
       </div>
       <div class="col-md-4 col-12" *ngIf="bill.status == null">
-        <button
-          hero
-          fullWidth
-          nbButton
-          shape="semi-round"
-          status="danger"
-          (click)="RemoveBooking()"
-        >
+        <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="RemoveBooking()">
           <i class="fas fa-minus-circle"></i>&emsp;Xóa hóa đơn
         </button>
       </div>
       <div class="col-md-4 col-12" *ngIf="bill.status != null">
-        <button
-          hero
-          fullWidth
-          nbButton
-          shape="semi-round"
-          status="danger"
-          (click)="CheckBooking('cancel')"
-        >
+        <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="CheckBooking('cancel')">
           <i class="fas fa-minus-circle"></i>&emsp;Hủy hóa đơn
         </button>
       </div>

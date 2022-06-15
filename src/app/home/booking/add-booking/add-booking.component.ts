@@ -37,7 +37,7 @@ export class AddBookingComponent implements OnInit {
   ngOnInit(): void {
     this.loadData()
     this.route.params.subscribe((params: Params) => {
-      if(params['id'] != null) {
+      if (params['id'] != null) {
         this.bookingService.SelectBooking(params['id']).subscribe(res => {
           this.booking = res;
           this.isAdd = false;
@@ -50,7 +50,7 @@ export class AddBookingComponent implements OnInit {
     })
   }
 
-  loadData(){
+  loadData() {
     this.roomService.ListRooms.subscribe(res => {
       this.rooms = res
     })
@@ -67,8 +67,8 @@ export class AddBookingComponent implements OnInit {
       checkin: [new Date(), [Validators.required]],
       checkout: [this.dateService.addDay(new Date(), 1), [Validators.required]],
       adult: [0, [Validators.required, Validators.min(1)]],
-      child: [0, [Validators.min(0)]],
-      voucher: ['']
+      child: [0, [Validators.min(1)]],
+      voucher: ['', [Validators.required]]
     })
   }
 
@@ -84,31 +84,31 @@ export class AddBookingComponent implements OnInit {
 
   getFormData() {
     this.booking.roomID = this.getValue('room'),
-    this.booking.customerID = this.getValue('customer'),
-    this.booking.adult = this.getValue('adult'),
-    this.booking.child = this.getValue('child'),
-    this.booking.checkinDate = new Date(this.getValue('checkin')),
-    this.booking.checkoutDate = new Date(this.getValue('checkout')),
-    this.booking.voucherCode = this.getValue('voucher')
+      this.booking.customerID = this.getValue('customer'),
+      this.booking.adult = this.getValue('adult'),
+      this.booking.child = this.getValue('child'),
+      this.booking.checkinDate = new Date(this.getValue('checkin')),
+      this.booking.checkoutDate = new Date(this.getValue('checkout')),
+      this.booking.voucherCode = this.getValue('voucher')
   }
 
   submitForm() {
     console.log(this.isAdd)
-    if(this.isAdd) this.addNew()
+    if (this.isAdd) this.addNew()
     else this.update()
   }
 
   get minCheckout() {
-    return this.dateService.addDay(this.getValue('checkin'),1)
+    return this.dateService.addDay(this.getValue('checkin'), 1)
   }
 
   get maxCheckout() {
-    return this.dateService.addMonth(this.getValue('checkin'),1)
+    return this.dateService.addMonth(this.getValue('checkin'), 1)
   }
 
   get minCheckin() {
-    if(this.isAdd) return new Date();
-    if(new Date(this.booking.checkinDate) < new Date()){
+    if (this.isAdd) return new Date();
+    if (new Date(this.booking.checkinDate) < new Date()) {
       return new Date(this.booking.checkinDate)
     } else return new Date();
   }
@@ -118,7 +118,7 @@ export class AddBookingComponent implements OnInit {
   }
 
   addNew() {
-    console.log('add')
+    console.log('Thêm')
     this.booking = {
       roomID: this.getValue('room'),
       customerID: this.getValue('customer'),
@@ -129,44 +129,44 @@ export class AddBookingComponent implements OnInit {
       voucherCode: this.getValue('voucher')
     }
     this.bookingService.NewBooking(this.booking).subscribe(res => {
-      this.toast.show('Create', 'Create booking successful', {status:'success'})
+      this.toast.show('Tạo mới hóa đơn thành công', 'THÀNH CÔNG', { status: 'success' })
       this.router.navigateByUrl('/home/booking')
     },
-    err => {
-      this.dialog.open(DialogResultComponent, {
-        context: {
-          title: 'Error when create booking!!!',
-          content: err.error
-        }
+      err => {
+        this.dialog.open(DialogResultComponent, {
+          context: {
+            title: 'THẤT BẠI',
+            content: err.error
+          }
+        })
       })
-    })
   }
 
   update() {
     this.getFormData()
     this.bookingService.EditBooking(this.booking).subscribe(res => {
-      this.toast.show('Edit', 'Edit booking successful', {status:'success'})
+      this.toast.show('Sửa hóa đơn thành công', 'THÀNH CÔNG', { status: 'success' })
       this.router.navigateByUrl('/home/booking/details/' + this.booking.id)
     },
-    err => {
-      this.dialog.open(DialogResultComponent, {
-        context: {
-          title: 'Error when edit booking!!!',
-          content: err.error
-        }
+      err => {
+        this.dialog.open(DialogResultComponent, {
+          context: {
+            title: 'THẤT BẠI',
+            content: err.error
+          }
+        })
       })
-    })
   }
 
   getValue(ctrl: string) {
     return this.form.get(ctrl).value
   }
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 
   resetFrm() {
-    if(this.isAdd) this.initForm()
+    if (this.isAdd) this.initForm()
     else this.loadValue()
   }
 }

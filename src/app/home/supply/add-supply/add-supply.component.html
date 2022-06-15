@@ -5,99 +5,69 @@
       <nb-card-body>
         <form novalidate [formGroup]="form">
           <div class="form-group row">
-            <label for="Id" class="label col-sm-3 col-form-label"
-              >Mã số vật tư:
+            <label for="Id" class="label col-sm-3 col-form-label">Mã số vật tư:
             </label>
             <div class="col-sm-9">
-              <input
-                type="text"
-                formControlName="id"
-                nbInput
-                fullWidth
-                id="Id"
-                placeholder="Mã vật tư"
-                [status]="getConfig('id') ? 'danger' : 'basic'"
-              />
+              <input type="text" formControlName="id" nbInput fullWidth id="Id" placeholder="Mã vật tư"
+                [status]="getConfig('id') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('id')" class="text-danger">
-                <span *ngIf="form.get('id').errors.required"
-                  >ID is required</span
-                >
+                <span *ngIf="form.get('id').errors.required">Yêu cầu nhập mã vật tư</span>
                 <span *ngIf="form.get('id').errors?.minlength">
-                  Supply ID at least
+                  Mã vật tư ít nhất
                   {{
-                    form.get("id").errors?.minlength.requiredLength
+                  form.get("id").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="form.get('id').errors?.maxlength">
-                  Supply ID at most
+                  Mã vật tư tối đa
                   {{
-                    form.get("id").errors?.maxlength.requiredLength
+                  form.get("id").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="form.get('id').errors?.pattern">
-                  Supply ID is invalid
+                  Mã vật tư không hợp lệ
                 </span>
               </span>
             </div>
           </div>
           <div class="form-group row">
-            <label for="Name" class="label col-sm-3 col-form-label"
-              >Tên vật tư:
+            <label for="Name" class="label col-sm-3 col-form-label">Tên vật tư:
             </label>
             <div class="col-sm-9">
-              <input
-                type="text"
-                formControlName="name"
-                nbInput
-                fullWidth
-                id="Name"
-                placeholder="Tên vật tư"
-                [status]="getConfig('name') ? 'danger' : 'basic'"
-              />
+              <input type="text" formControlName="name" nbInput fullWidth id="Name" placeholder="Tên vật tư"
+                [status]="getConfig('name') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('name')" class="text-danger">
-                <span *ngIf="form.get('name').errors.required"
-                  >Name is required</span
-                >
+                <span *ngIf="form.get('name').errors.required">Yêu cầu nhập tên vật tư</span>
                 <span *ngIf="form.get('name').errors?.minlength">
-                  Name at least
+                  Tên vật tư ít nhất
                   {{
-                    form.get("name").errors?.minlength.requiredLength
+                  form.get("name").errors?.minlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
                 <span *ngIf="form.get('id').errors?.maxlength">
-                  Name at most
+                  Tên vật tư tối đa
                   {{
-                    form.get("name").errors?.maxlength.requiredLength
+                  form.get("name").errors?.maxlength.requiredLength
                   }}
-                  characters
+                  ký tự
                 </span>
               </span>
             </div>
           </div>
           <div class="form-group row">
-            <label for="Total" class="label col-sm-3 col-form-label"
-              >Số lượng:
+            <label for="Total" class="label col-sm-3 col-form-label">Số lượng:
             </label>
             <div class="col-sm-9">
-              <input
-                type="number"
-                formControlName="total"
-                nbInput
-                fullWidth
-                id="Total"
-                placeholder="Tổng vật tư"
-                [status]="getConfig('total') ? 'danger' : 'basic'"
-              />
+              <input type="number" formControlName="total" nbInput fullWidth id="Total" placeholder="Tổng vật tư"
+                [status]="getConfig('total') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('total')" class="text-danger">
-                <span *ngIf="form.get('total').errors.required"
-                  >Total is required</span
-                >
+                <span *ngIf="form.get('total').errors.required">Yêu cầu nhập số lượng </span>
                 <span *ngIf="form.get('total').errors?.min">
-                  Total at min
-                  {{ form.get("total").errors?.min.min }} characters
+                  Số lượng không được nhỏ hơn
+                  {{ form.get("total").errors?.min.min }}
                 </span>
               </span>
             </div>
@@ -107,25 +77,12 @@
       <nb-card-footer>
         <div class="row">
           <div class="col-md-4 col-12">
-            <button
-              nbButton
-              fullWidth
-              hero
-              status="primary"
-              (click)="addSupply()"
-              [disabled]="form.invalid"
-            >
+            <button nbButton fullWidth hero status="primary" (click)="addSupply()" [disabled]="form.invalid">
               THÊM MỚI
             </button>
           </div>
           <div class="offset-md-4 col-md-4 col-12">
-            <button
-              nbButton
-              fullWidth
-              hero
-              status="danger"
-              (click)="this.form.reset()"
-            >
+            <button nbButton fullWidth hero status="danger" (click)="this.form.reset()">
               NHẬP LẠI
             </button>
           </div>

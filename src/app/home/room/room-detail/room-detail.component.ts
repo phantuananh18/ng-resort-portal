@@ -14,7 +14,7 @@ export class RoomDetailComponent implements OnInit {
   room: Room
 
   isAdmin: boolean
-  
+
   constructor(
     private roomService: RoomService,
     private route: ActivatedRoute,
@@ -26,16 +26,16 @@ export class RoomDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRoom()
-    
+
   }
 
   loadRoom() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.roomService.SelectRoom(id)
-      .subscribe(res => {
-        this.room = res
-      })
+        .subscribe(res => {
+          this.room = res
+        })
     })
     this.authService.getToken().subscribe(
       token => {
@@ -54,20 +54,20 @@ export class RoomDetailComponent implements OnInit {
 
   onRemove() {
     this.roomService.deleteRoom(this.room.id)
-    .subscribe(
-      res => {
-        this.toast.show('Remove', 'Remove room success', { status: 'primary'})
-        this.router.navigateByUrl('/home/room')
-      },
-      err => {
-        this.dialog.open(DialogResultComponent, {
-          context: {
-            title: 'Error when remove',
-            content: err.error
-          }
-        })
-      }
-    )
+      .subscribe(
+        res => {
+          this.toast.show('Xóa phòng thành công', 'THÀNH CÔNG', { status: 'primary' })
+          this.router.navigateByUrl('/home/room')
+        },
+        err => {
+          this.dialog.open(DialogResultComponent, {
+            context: {
+              title: 'THẤT BẠI',
+              content: err.error
+            }
+          })
+        }
+      )
   }
 
 }

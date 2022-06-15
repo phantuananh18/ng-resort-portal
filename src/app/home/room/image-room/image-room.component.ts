@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {  NbToastrService, NbDialogService } from '@nebular/theme';
+import { NbToastrService, NbDialogService } from '@nebular/theme';
 import { RoomService } from '../../../data/room.service';
 import firebase from 'firebase/app';
 import 'firebase/storage';
@@ -31,7 +31,7 @@ export class ImageRoomComponent implements OnInit {
       arrowNextIcon: 'fa fa-chevron-right',
       imageAnimation: NgxGalleryAnimation.Rotate,
       imageSwipe: true,
-      thumbnailActions: [{icon: 'fa fa-times-circle', onClick: this.deleteImage.bind(this), titleText: 'delete'}]
+      thumbnailActions: [{ icon: 'fa fa-times-circle', onClick: this.deleteImage.bind(this), titleText: 'delete' }]
     },
     // max-width 800
     {
@@ -95,7 +95,7 @@ export class ImageRoomComponent implements OnInit {
               this.loadData();
               this.files.splice(this.files.indexOf(file), 1)
             },
-            err => this.toastr.show(err.error, 'UPLOAD', {status:'danger'})
+            err => this.toastr.show(err.error, 'THẤT BẠI', { status: 'danger' })
           )
         })
       })
@@ -104,14 +104,14 @@ export class ImageRoomComponent implements OnInit {
 
   onSelect(event) {
     this.files.push(...event.addedFiles)
-	}
+  }
 
   onRemove(event) {
     this.files.splice(this.files.indexOf(event), 1);
-	}
+  }
 
   submitUpload() {
-    this.files.forEach((file,index) => this.upload(file, index))
+    this.files.forEach((file, index) => this.upload(file, index))
   }
 
   disabledBtn() {
@@ -121,15 +121,15 @@ export class ImageRoomComponent implements OnInit {
   deleteImage(event, index): void {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: 'REMOVE IMAGE',
-        content: 'Are you want to remove this image?'
+        title: 'XÓA ẢNH',
+        content: 'Bạn có muốn xóa ảnh này không?'
       }
     }).onClose.subscribe(res => {
-      if(res) {
+      if (res) {
         this.roomService.removeImage(this.listImg[index].url).subscribe(
           res => this.loadData(),
           err => {
-            this.toastr.show('Error when remove image', 'ERROR', {status:'danger'})
+            this.toastr.show('Lỗi khi xóa ảnh', 'THẤT BẠI', { status: 'danger' })
             console.log(err)
           }
         )
