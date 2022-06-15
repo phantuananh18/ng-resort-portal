@@ -1,0 +1,77 @@
+<nb-card status="success" *ngIf="supply$ | async as supply; else noSer">
+    <nb-card-header>Cập nhật dịch vụ: {{ supply.id }}</nb-card-header>
+    <nb-card-body>
+        <form novalidate [formGroup]="form">
+            <div class="form-group row">
+                <label for="Name" class="label col-sm-3 col-form-label">Tên dịch vụ: </label>
+                <div class="col-sm-9">
+                    <input type="text" 
+                    formControlName="name" 
+                    nbInput fullWidth id="Name"
+                    placeholder="Supply name"
+                    [status]="getConfig('name') ? 'danger' : 'basic'">
+                    <span *ngIf="getConfig('name')"
+                        class="text-danger">
+                        <span *ngIf="form.get('name').errors.required">Name is required</span>
+                        <span *ngIf="form.get('name').errors?.minlength">
+                            Name at least {{ form.get('name').errors?.minlength.requiredLength }} characters
+                        </span>
+                        <span *ngIf="form.get('name').errors?.maxlength">
+                            Name at most {{ form.get('name').errors?.maxlength.requiredLength }} characters
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-group row">
+                        <label for="Type" class="label col-sm-3 col-form-label">Cập nhật số lượng: </label>
+                        <div class="col-sm-9">
+                            <nb-select formControlName="type" shape="semi-round" fullWidth
+                                id="Type" placeholder="Loại cập nhật">
+                                <nb-option *ngFor="let type of listType"
+                                    [value] = "type.value">
+                                    {{ type.name }}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-group row">
+                        <label for="Total" class="label col-sm-3 col-form-label">Số lượng: </label>
+                        <div class="col-sm-9">
+                            <input type="number" 
+                            formControlName="total" 
+                            nbInput fullWidth id="Total"
+                            placeholder="Supply total"
+                            [status]="getConfig('total') ? 'danger' : 'basic'">
+                            <span *ngIf="getConfig('total')"
+                                class="text-danger">
+                                <span *ngIf="form.get('total').errors.required">Total is required</span>
+                                <span *ngIf="form.get('total').errors?.min">
+                                    Total at min {{ form.get('total').errors?.min.min }}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button nbButton fullWidth hero status="primary" (click)="updateSupply()" [disabled]="form.invalid">CẬP NHẬT</button>
+            </div>
+            <div class="offset-md-4 col-md-4 col-12">
+                <button nbButton fullWidth hero status="danger" (click)="resetForm()">NHẬP LẠI</button>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ng-template #noSer>
+    <nb-card class="text-danger">
+        <nb-card-header>Service does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

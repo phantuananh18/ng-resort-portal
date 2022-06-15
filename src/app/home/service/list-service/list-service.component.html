@@ -1,0 +1,10 @@
+<nb-card accent="primary">
+    <nb-card-header>
+      DANH SÁCH DỊCH VỤ
+    </nb-card-header>
+  
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="rowSelect($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>

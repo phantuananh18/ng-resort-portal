@@ -1,0 +1,60 @@
+<nb-card status="success" *ngIf="service$ | async as service; else noSer">
+  <nb-card-header>Thông tin dịch vụ: {{ service.id }}</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>
+        <div class="col-4">
+          <i class="fas fa-concierge-bell"></i>
+          Tên dịch vụ:
+        </div>
+        <div class="col-8">
+          {{ service.name }}
+        </div>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="col-4">
+          <i class="fas fa-dollar-sign"></i>
+          Giá dịch vụ:
+        </div>
+        <div class="col-8">{{ service.price }} $</div>
+      </nb-list-item>
+      <nb-list-item> Mô tả dịch vụ: </nb-list-item>
+      <nb-list-item>
+        <div [innerHTML]="service.description | innerHtmlPipe"></div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+  <nb-card-footer *ngIf="canEdit">
+    <div class="row">
+      <div class="col-md-4 col-12">
+        <button
+          hero
+          fullWidth
+          nbButton
+          shape="semi-round"
+          status="info"
+          (click)="onUpdate(service.id)"
+        >
+          <i class="fas fa-edit"></i>&emsp;Cập nhật dịch vụ
+        </button>
+      </div>
+      <div class="offset-md-4 col-md-4 col-12">
+        <button
+          hero
+          fullWidth
+          nbButton
+          shape="semi-round"
+          status="danger"
+          (click)="onRemove(service.id)"
+        >
+          <i class="fas fa-minus-circle"></i>&emsp;Xóa dịch vụ
+        </button>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>
+<ng-template #noSer>
+  <nb-card status="danger">
+    <nb-card-header>Service does not exist</nb-card-header>
+  </nb-card>
+</ng-template>

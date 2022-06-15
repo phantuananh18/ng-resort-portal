@@ -1,0 +1,71 @@
+<nb-card status="success" *ngIf="room != undefined; else noRoom">
+    <nb-card-header>Thông tin phòng: {{room.id}}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-home"></i>
+                    Tên phòng:
+                </div>
+                <div class="col-6">{{ room.name }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-inbox"></i>
+                    Loại phòng: 
+                </div>
+                <div class="col-6">{{ room.roomType.nameType }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Giá thuê:  
+                </div>
+                <div class="col-6">{{ room.price }} $</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-user"></i>
+                    Người lớn:  
+                </div>
+                <div class="col-6">{{ room.adult }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-child"></i>
+                    Trẻ em:  
+                </div>
+                <div class="col-6">{{ room.child }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-info-circle"></i>
+                    Mô tả:  
+                </div>
+                <div class="col-6">{{ room.description }}</div>
+            </nb-list-item>
+        </nb-list>
+        
+    </nb-card-body>
+    <nb-card-footer *ngIf="isAdmin">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="onUpdate()"><i
+                        class="fas fa-edit"></i>&emsp;Cập nhật thông tin </button>
+            </div>
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="editImg()"><i
+                        class="fas fa-image"></i>&emsp;Cập nhật ảnh </button>
+            </div>
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="onRemove()"><i
+                        class="fas fa-minus-circle"></i>&emsp;Xóa phòng </button>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ng-template #noRoom>
+    <nb-card status="danger">
+        <nb-card-header>Staff does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

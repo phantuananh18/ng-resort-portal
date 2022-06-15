@@ -1,0 +1,193 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card status="success" *ngIf="staff != undefined; else noStaff">
+      <nb-card-header>CẬP NHẬT NHÂN VIÊN {{ staff.id }}</nb-card-header>
+      <nb-card-body>
+        <form novalidate [formGroup]="frUpdateStaff">
+          <div class="form-group row">
+            <label for="name" class="label col-sm-3 col-form-label">Họ tên:
+            </label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="name" nbInput fullWidth id="name" placeholder="Name" [status]="
+                  frUpdateStaff.get('name').invalid &&
+                  frUpdateStaff.get('name').touched
+                    ? 'danger'
+                    : 'basic'
+                " />
+              <span *ngIf="
+                  frUpdateStaff.get('name').invalid &&
+                  frUpdateStaff.get('name').touched
+                " class="text-danger">
+                <span *ngIf="frUpdateStaff.get('name').errors.required">Name is required</span>
+                <span *ngIf="frUpdateStaff.get('name').errors?.minlength">
+                  Name at least
+                  {{
+                  frUpdateStaff.get("name").errors?.minlength.requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="frUpdateStaff.get('name').errors?.maxlength">
+                  Name at most
+                  {{
+                  frUpdateStaff.get("name").errors?.maxlength.requiredLength
+                  }}
+                  characters
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="gender" class="label col-sm-3 col-form-label">Giới tính:
+            </label>
+            <div class="col-sm-9" id="gender">
+              <nb-radio-group formControlName="gender">
+                <nb-radio [value]="true">Nam</nb-radio>
+                <nb-radio [value]="false">Nữ</nb-radio>
+              </nb-radio-group>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="birth" class="label col-sm-3 col-form-label">Ngày sinh:
+            </label>
+            <div class="col-sm-9" id="birth">
+              <input formControlName="birth" nbInput fullWidth placeholder="Birthday" [status]="
+                  frUpdateStaff.get('birth').invalid &&
+                  frUpdateStaff.get('birth').touched
+                    ? 'danger'
+                    : 'basic'
+                " [nbDatepicker]="dateTimePicker" />
+              <nb-datepicker #dateTimePicker></nb-datepicker>
+              <span *ngIf="
+                  frUpdateStaff.get('birth').invalid &&
+                  frUpdateStaff.get('birth').touched
+                " class="text-danger">
+                <span *ngIf="frUpdateStaff.get('birth').errors.required">Birth is required</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="pass" class="label col-sm-3 col-form-label">Mật khẩu:
+            </label>
+            <div class="col-sm-9">
+              <input type="password" formControlName="password" nbInput fullWidth id="pass" placeholder="Password"
+                [status]="
+                  frUpdateStaff.get('password').invalid &&
+                  frUpdateStaff.get('password').touched
+                    ? 'danger'
+                    : 'basic'
+                " />
+              <span *ngIf="
+                  frUpdateStaff.get('password').invalid &&
+                  frUpdateStaff.get('password').touched
+                " class="text-danger">
+                <span *ngIf="frUpdateStaff.get('password').errors.required">Password is required</span>
+                <span *ngIf="frUpdateStaff.get('password').errors?.minlength">
+                  Password at least
+                  {{
+                  frUpdateStaff.get("password").errors?.minlength
+                  .requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="frUpdateStaff.get('password').errors?.maxlength">
+                  Password at most
+                  {{
+                  frUpdateStaff.get("password").errors?.maxlength
+                  .requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="frUpdateStaff.get('password').errors?.pattern">
+                  Password is invalid
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="phone" class="label col-sm-3 col-form-label">SĐT:
+            </label>
+            <div class="col-sm-9">
+              <input type="tel" formControlName="phone" nbInput fullWidth id="phone" placeholder="Phone number"
+                [status]="
+                  frUpdateStaff.get('phone').invalid &&
+                  frUpdateStaff.get('phone').touched
+                    ? 'danger'
+                    : 'basic'
+                " />
+              <span *ngIf="
+                  frUpdateStaff.get('phone').invalid &&
+                  frUpdateStaff.get('phone').touched
+                " class="text-danger">
+                <span *ngIf="frUpdateStaff.get('phone').errors.required">Phone is required</span>
+                <span *ngIf="frUpdateStaff.get('phone').errors?.pattern">
+                  Phone is invalid
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="label col-sm-3 col-form-label">Email:
+            </label>
+            <div class="col-sm-9">
+              <input type="email" formControlName="email" nbInput fullWidth id="email" placeholder="Email" [status]="
+                  frUpdateStaff.get('email').invalid &&
+                  frUpdateStaff.get('email').touched
+                    ? 'danger'
+                    : 'basic'
+                " />
+              <span *ngIf="
+                  frUpdateStaff.get('email').invalid &&
+                  frUpdateStaff.get('email').touched
+                " class="text-danger">
+                <span *ngIf="frUpdateStaff.get('email').errors.required">Email is required</span>
+
+                <span *ngIf="frUpdateStaff.get('email').errors?.email">
+                  Email is invalid
+                </span>
+
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="permission" class="label col-sm-3 col-form-label">Chức vụ:
+            </label>
+            <div class="col-sm-9">
+              <nb-select formControlName="permission" placeholder="Permission" shape="semi-round" id="permission">
+                <nb-option value="STAFF">Nhân viên</nb-option>
+                <nb-option value="ADMIN">Admin</nb-option>
+                <nb-option value="WAREHOUSE">Nhân viên kho</nb-option>
+                <nb-option value="MANAGER">Quản lý</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="row">
+          <div class="col-md-4 col-12">
+            <button nbButton fullWidth hero status="primary" (click)="updateStaff()" [disabled]="frUpdateStaff.invalid">
+              CẬP NHẬT
+            </button>
+          </div>
+          <div class="offset-md-4 col-md-4 col-12">
+            <button nbButton fullWidth hero status="danger" (click)="initForm()">
+              NHẬP LẠI
+            </button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>
+
+<ng-template #noStaff>
+  <nb-card class="text-danger">
+    <nb-card-header>Staff does not exist</nb-card-header>
+  </nb-card>
+</ng-template>

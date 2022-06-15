@@ -1,0 +1,51 @@
+<nb-card status="success" *ngIf="voucher != undefined; else noVoucher">
+    <nb-card-header>Thông tin voucher: {{ voucher.code }}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-clipboard-check"></i>
+                    Điều kiện áp dụng:
+                </div>
+                <div class="col-8">
+                    &#x2265; {{ voucher.condition }}
+                </div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-percentage"></i>
+                    Giảm giá:
+                </div>
+                <div class="col-8">
+                    {{ voucher.discount }} %
+                </div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="far fa-calendar-check"></i>
+                    Thời hạn áp dụng:
+                </div>
+                <div class="col-8">
+                    From: {{ voucher.fromDate | date:'dd/MM/yyyy' }}   -   To: {{ voucher.toDate | date:'dd/MM/yyyy ' }} 
+                </div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer *ngIf="canEdit">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="onUpdate(voucher.code)"><i
+                        class="fas fa-edit"></i>&emsp;Cập nhật voucher </button>
+            </div>
+            <div class="offset-md-4 col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="onRemove(voucher.code)"><i
+                        class="fas fa-ban"></i>&emsp;Xóa voucher </button>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ng-template #noVoucher>
+    <nb-card status="danger">
+        <nb-card-header>Voucher does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

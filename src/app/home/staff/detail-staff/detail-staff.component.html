@@ -1,0 +1,68 @@
+<nb-card status="success" *ngIf="staff != undefined; else noStaff">
+    <nb-card-header>Thông tin nhân viên: {{staff.id}}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-user"></i>
+                    Tên nhân viên:
+                </div>
+                <div class="col-6">{{ staff.name }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-venus-mars"></i>
+                    Giới tính:
+                </div>
+                <div class="col-6">{{ staff.gender ? "Nam" : "Nữ" }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-birthday-cake"></i>
+                    Ngày sinh:
+                </div>
+                <div class="col-6">{{ staff.birth | date:'dd/MM/yyyy' }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-phone"></i>
+                    Số diện thoại:
+                </div>
+                <div class="col-6">{{ staff.phone }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-envelope"></i>
+                    Email:
+                </div>
+                <div class="col-6">{{ staff.email }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-id-card-alt"></i>
+                    Chức vụ:
+                </div>
+                <div class="col-6">{{ staff.permissionID | perm }}</div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="onUpdate(staff.id)"><i
+                        class="fas fa-edit"></i>&emsp;Cập nhật thông tin </button>
+            </div>
+            <div class="offset-md-4 col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="onRemove(staff.id)"><i
+                        class="fas fa-user-times"></i>&emsp;Xóa nhân viên </button>
+            </div>
+        </div>
+
+
+    </nb-card-footer>
+</nb-card>
+<ng-template #noStaff>
+    <nb-card status="danger">
+        <nb-card-header>Staff does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

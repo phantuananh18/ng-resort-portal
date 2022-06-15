@@ -1,0 +1,13 @@
+<nb-card accent="primary">
+  <nb-card-header>
+    DANH SÁCH NHÂN VIÊN
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- <label class="search-label" for="search">Search: </label>
+    <input nbInput #search class="search-input" id="search" type="text" (keydown.enter)="onSearch(search.value)"> -->
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+      (userRowSelect)="staffSelect($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

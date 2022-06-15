@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body *ngIf="content">
+    {{ content }}
+  </nb-card-body>
+  <nb-card-footer class="button-row">
+    <button nbButton status="danger" (click)="cancel()">Thoát</button>
+    <button nbButton status="success" (click)="submit()">Đồng ý</button>
+  </nb-card-footer>
+</nb-card>

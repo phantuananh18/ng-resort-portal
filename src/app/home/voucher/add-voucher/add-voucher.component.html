@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>THÊM VOUCHER</nb-card-header>
+      <nb-card-body>
+        <form novalidate [formGroup]="form">
+          <div class="form-group row">
+            <label for="Code" class="label col-sm-3 col-form-label">
+              Mã voucher:
+            </label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="code" nbInput fullWidth id="Code" placeholder="Nhập mã voucher"
+                [status]="getConfig('code') ? 'danger' : 'basic'" />
+              <span *ngIf="getConfig('code')" class="text-danger">
+                <span *ngIf="form.get('code').errors.required">Mã voucher không được bỏ trống!</span>
+                <span *ngIf="form.get('code').errors?.minlength">
+                  Mã voucher chứa ít nhất
+                  {{ form.get("code").errors?.minlength.requiredLength }}
+                  ký tự
+                </span>
+                <span *ngIf="form.get('code').errors?.maxlength">
+                  Mã vouher tối đa
+                  {{ form.get("code").errors?.maxlength.requiredLength }}
+                  ký tự
+                </span>
+                <span *ngIf="form.get('code').errors?.pattern">
+                  Mã voucher không đúng!
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="fromDate" class="label col-sm-3 col-form-label">Từ ngày:
+            </label>
+            <div class="col-sm-9" id="fromDate">
+              <input formControlName="fromDate" nbInput fullWidth placeholder="Từ ngày" [nbDatepicker]="fromDate"
+                [status]="getConfig('fromDate') ? 'danger' : 'basic'" />
+              <nb-datepicker #fromDate [min]="getDate()"></nb-datepicker>
+              <span *ngIf="
+                  form.get('fromDate').invalid && form.get('fromDate').touched
+                " class="text-danger">
+                <span *ngIf="form.get('fromDate').errors.required">Không được bỏ trống!</span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="toDate" class="label col-sm-3 col-form-label">Đến ngày:
+            </label>
+            <div class="col-sm-9" id="toDate">
+              <input formControlName="toDate" nbInput fullWidth placeholder="Đến ngày" [nbDatepicker]="toDate"
+                [status]="getConfig('toDate') ? 'danger' : 'basic'" />
+              <nb-datepicker #toDate [min]="minToDate"></nb-datepicker>
+              <span *ngIf="form.get('toDate').invalid && form.get('toDate').touched" class="text-danger">
+                <span *ngIf="form.get('toDate').errors.required">Không được bỏ trống!</span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Condition" class="label col-sm-3 col-form-label">Điều kiện:
+            </label>
+            <div class="col-sm-9">
+              <input type="number" formControlName="condition" nbInput fullWidth id="condition"
+                placeholder="Điều kiện áp dụng" [status]="getConfig('condition') ? 'danger' : 'basic'" />
+              <span *ngIf="getConfig('condition')" class="text-danger">
+                <span *ngIf="form.get('condition').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('condition').errors?.min">
+                  Condition at min {{ form.get("condition").errors?.min.min }}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="discount" class="label col-sm-3 col-form-label">Giảm giá:
+            </label>
+            <div class="col-sm-9">
+              <input type="number" formControlName="discount" nbInput fullWidth id="discount" placeholder="Giảm giá"
+                [status]="getConfig('discount') ? 'danger' : 'basic'" />
+              <span *ngIf="getConfig('discount')" class="text-danger">
+                <span *ngIf="form.get('discount').errors.required">Không được bỏ trống!</span>
+                <span *ngIf="form.get('discount').errors?.min">
+                  Discount at min {{ form.get("discount").errors?.min.min }}
+                </span>
+                <span *ngIf="form.get('discount').errors?.max">
+                  Discount at max {{ form.get("discount").errors?.max.min }}
+                </span>
+              </span>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="row">
+          <div class="col-md-4 col-12">
+            <button fullWidth nbButton hero status="primary" (click)="addVoucher()" [disabled]="form.invalid">
+              THÊM MỚI
+            </button>
+          </div>
+          <div class="offset-md-4 col-md-4 col-12">
+            <button fullWidth nbButton hero status="danger" (click)="this.form.reset()">
+              NHẬP LẠI
+            </button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

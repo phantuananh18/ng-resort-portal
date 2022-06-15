@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>QUẢN LÝ ẢNH PHÒNG #{{ roomID }}</nb-card-header>
+            <nb-card-body>
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+                <div ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                    <ngx-dropzone-label>
+                        <div>
+                            <h2>Drop image of room to upload</h2>
+                        </div>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                        [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <button nbButton fullWidth hero status="primary" (click)="submitUpload()"
+                            [disabled]="disabledBtn()">UPLOAD IMAGE ROOM</button>
+                    </div>
+                </div>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</div>

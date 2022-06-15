@@ -1,0 +1,12 @@
+<nb-card accent="primary">
+  <nb-card-header>
+    DANH SÁCH PHÒNG
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+      (userRowSelect)="selectRoom($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

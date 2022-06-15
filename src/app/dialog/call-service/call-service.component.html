@@ -1,0 +1,37 @@
+<nb-card>
+    <nb-card-header>DỊCH VỤ CHO HÓA ĐƠN #{{ id }}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item *ngFor="let item of addService">
+                <nb-list-item>
+                    <div class="row">
+                        <div class="col">
+                            Dịch vụ: {{ item.name }}
+                        </div>
+                        <div class="col">
+                            Giá: {{ item.price }}
+                        </div>
+                        <div class="col-2">
+                            <button nbButton status="success" (click)="AddService(item.id)"><nb-icon icon="plus-circle-outline"></nb-icon></button>
+                        </div>
+                    </div>
+                </nb-list-item>
+            </nb-list-item>
+            <nb-list-item *ngFor="let item of removeService">
+                <nb-list-item>
+                    <div class="row">
+                        <div class="col">
+                            Dịch vụ: {{ item.name }}
+                        </div>
+                        <div class="col">
+                            Giá: {{ item.price }}
+                        </div>
+                        <div class="col-2">
+                            <button nbButton status="danger" (click)="RemoveService(item.id)"><nb-icon icon="minus-circle-outline"></nb-icon></button>
+                        </div>
+                    </div>
+                </nb-list-item>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

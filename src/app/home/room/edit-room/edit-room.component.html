@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-12">
+        <nb-card status="success" *ngIf="room != undefined; else noRoom">
+            <nb-card-header>CẬP NHẬT PHÒNG {{ room.id }}</nb-card-header>
+            <nb-card-body>
+                <form novalidate [formGroup]="formEdit">
+                    <!-- Name -->
+                    <div class="form-group row">
+                        <label for="name" class="label col-sm-3 col-form-label">Tên phòng: </label>
+                        <div class="col-sm-9">
+                            <input type="text" 
+                            formControlName="name" 
+                            nbInput fullWidth id="name"
+                            placeholder="Room name"
+                            [status]="getConfig('name') ? 'danger' : 'basic'">
+                            <span *ngIf="getConfig('name')"class="text-danger">
+                                <span *ngIf="formEdit.get('name').errors.required">Name is required</span>
+                                <span *ngIf="formEdit.get('name').errors?.minlength">
+                                    Room name at least {{ formEdit.get('name').errors?.minlength.requiredLength }} characters
+                                </span>
+                                <span *ngIf="formEdit.get('name').errors?.maxlength">
+                                    Room name at most {{ formEdit.get('name').errors?.maxlength.requiredLength }} characters
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="label col-sm-3 col-form-label">Loại phòng: </label>
+                        <div class="col-sm-9">
+                            <nb-select 
+                                fullWidth
+                                formControlName="type" 
+                                placeholder="type" 
+                                shape="semi-round"
+                                id="Room type"
+                                [status]="getConfig('type') ? 'danger' : 'basic'">
+                                <nb-option *ngFor="let item of listType" [value]="item.id">{{ item.nameType }} (ID: {{ item.id }})</nb-option>
+                            </nb-select>
+                            <span *ngIf="getConfig('type')" class="text-danger">
+                                <span *ngIf="formEdit.get('type').errors.required">Type is required</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group row">
+                        <label for="price" class="label col-sm-3 col-form-label">Giá thuê phòng: </label>
+                        <div class="col-sm-9">
+                            <input type="number" 
+                                formControlName="price" 
+                                nbInput fullWidth id="price"
+                                placeholder="Price"
+                                [status]="getConfig('price') ? 'danger' : 'basic'">
+                                <span *ngIf="getConfig('price')" class="text-danger">
+                                    <span *ngIf="formEdit.get('price').errors.required">Price is required</span>
+                                    <span *ngIf="formEdit.get('price').errors.min">Price is min at {{formEdit.get('price').errors.min.min}}</span>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Adult -->
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="adult" class="label col-sm-3 col-form-label">Người lớn: </label>
+                                <div class="col-sm-9">
+                                    <input type="number" 
+                                    formControlName="adult" 
+                                    nbInput fullWidth id="adult"
+                                    placeholder="Adult"
+                                    [status]="getConfig('adult') ? 'danger' : 'basic'">
+                                    <span *ngIf="getConfig('adult')" class="text-danger">
+                                        <span *ngIf="formEdit.get('adult').errors.required">Adult is required</span>
+                                        <span *ngIf="formEdit.get('adult').errors.min">Adult is min at {{formEdit.get('adult').errors.min.min}}</span>
+                                        <span *ngIf="formEdit.get('adult').errors.max">Adult is max at {{formEdit.get('adult').errors.max.max}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Child -->
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="child" class="label col-sm-3 col-form-label">Trẻ em: </label>
+                                <div class="col-sm-9">
+                                    <input type="number" 
+                                    formControlName="child" 
+                                    nbInput fullWidth id="child"
+                                    placeholder="Child"
+                                    [status]="getConfig('child') ? 'danger' : 'basic'">
+                                    <span *ngIf="getConfig('child')" class="text-danger">
+                                        <span *ngIf="formEdit.get('child').errors.required">Child is required</span>
+                                        <span *ngIf="formEdit.get('child').errors.min">Child is min at {{formEdit.get('child').errors.min.min}}</span>
+                                        <span *ngIf="formEdit.get('child').errors.max">Child is max at {{formEdit.get('child').errors.max.max}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="label col-sm-3 col-form-label">Mô tả phòng: </label>
+                        <div class="col-sm-9">
+                            <textarea type="text" 
+                                formControlName="description" 
+                                nbInput fullWidth id="description"
+                                placeholder="Description"
+                                [status]="getConfig('description') ? 'danger' : 'basic'">
+                            </textarea> 
+                            <span *ngIf="getConfig('description')" class="text-danger">
+                                <span *ngIf="formEdit.get('description').errors.required">Description is required</span>
+                            </span>
+                        </div>
+                    </div>
+                </form>  
+            </nb-card-body>
+            <nb-card-footer>
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <button nbButton fullWidth hero status="primary" [disabled]="formEdit.invalid" (click)="UpdateRoom()">CẬP NHẬT</button>
+                    </div>
+                    <div class="offset-md-4 col-md-4 col-12">
+                        <button nbButton fullWidth hero status="danger" (click)="initFrm()">NHẬP LẠI</button>
+                    </div>
+                </div>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</div>
+
+<ng-template #noRoom>
+    <nb-card class="text-danger">
+        <nb-card-header>Room does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

@@ -1,0 +1,15 @@
+@import '/src/app/@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.search-label {
+    margin-right: 1rem;
+}
+.search-input {
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+}

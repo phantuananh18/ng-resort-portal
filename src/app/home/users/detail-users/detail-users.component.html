@@ -1,0 +1,61 @@
+<nb-card status="success" *ngIf="customer != undefined; else noCustomer">
+    <nb-card-header>Thông tin khách hàng: {{customer.id}}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-user"></i>
+                    Tên khách hàng:
+                </div>
+                <div class="col-6">{{ customer.name }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-venus-mars"></i>
+                    Giới tính:
+                </div>
+                <div class="col-6">{{ customer.gender ? "Nam" : "Nữ" }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-birthday-cake"></i>
+                    Ngày sinh:
+                </div>
+                <div class="col-6">{{ customer.birth | date:'mediumDate' }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-phone"></i>
+                    Số diện thoại:
+                </div>
+                <div class="col-6">{{ customer.phone }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-envelope"></i>
+                    Email:
+                </div>
+                <div class="col-6">{{ customer.email }}</div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer *ngIf="canUpdate">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="onUpdate()"><i
+                        class="fas fa-edit"></i>&emsp;Cập nhật thông tin </button>
+            </div>
+            <div class="offset-md-4 col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="onRemove()"><i
+                        class="fas fa-user-times"></i>&emsp;Xóa khách hàng</button>
+            </div>
+        </div>
+
+
+    </nb-card-footer>
+</nb-card>
+<ng-template #noCustomer>
+    <nb-card status="danger">
+        <nb-card-header>Customer does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

@@ -1,0 +1,85 @@
+<nb-card status="success" *ngIf="voucher != undefined; else noVoucher">
+    <nb-card-header>Cập nhật voucher: {{ voucher.code }}</nb-card-header>
+    <nb-card-body>
+        <form novalidate [formGroup]="form">
+            <div class="form-group row">
+                <label for="fromDate" class="label col-sm-3 col-form-label">Từ ngày: </label>
+                <div class="col-sm-9" id="fromDate">
+                    <input 
+                        formControlName="fromDate" 
+                        nbInput fullWidth placeholder="From Date"
+                        [nbDatepicker]="fromDate" [status]="getConfig('fromDate') ? 'danger' : 'basic'">
+                    <nb-datepicker #fromDate [min]="getMinDate()"></nb-datepicker>
+                    <span *ngIf="form.get('fromDate').invalid && form.get('fromDate').touched"
+                        class="text-danger">
+                        <span *ngIf="form.get('fromDate').errors.required">From date is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="toDate" class="label col-sm-3 col-form-label">Đến ngày: </label>
+                <div class="col-sm-9" id="toDate">
+                    <input formControlName="toDate" nbInput fullWidth placeholder="From Date"
+                        [nbDatepicker]="toDate" [status]="getConfig('toDate') ? 'danger' : 'basic'">
+                    <nb-datepicker #toDate [min]="getValueFrm('fromDate')"></nb-datepicker>
+                    <span *ngIf="form.get('toDate').invalid && form.get('toDate').touched"
+                        class="text-danger">
+                        <span *ngIf="form.get('toDate').errors.required">To date is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Condition" class="label col-sm-3 col-form-label">Điều kiện: </label>
+                <div class="col-sm-9">
+                    <input type="number" 
+                    formControlName="condition" 
+                    nbInput fullWidth id="Condition"
+                    placeholder="Condition"
+                    [status]="getConfig('condition') ? 'danger' : 'basic'">
+                    <span *ngIf="getConfig('condition')"
+                        class="text-danger">
+                        <span *ngIf="form.get('condition').errors.required">Condition is required</span>
+                        <span *ngIf="form.get('condition').errors?.min">
+                            Condition at min {{ form.get('condition').errors?.min.min }}
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="discount" class="label col-sm-3 col-form-label">Giảm giá: </label>
+                <div class="col-sm-9">
+                    <input type="number" 
+                    formControlName="discount" 
+                    nbInput fullWidth id="discount"
+                    placeholder="discount"
+                    [status]="getConfig('discount') ? 'danger' : 'basic'">
+                    <span *ngIf="getConfig('discount')"
+                        class="text-danger">
+                        <span *ngIf="form.get('discount').errors.required">Discount is required</span>
+                        <span *ngIf="form.get('discount').errors?.min">
+                            Discount at min {{ form.get('discount').errors?.min.min }}
+                        </span>
+                        <span *ngIf="form.get('discount').errors?.max">
+                            Discount at max {{ form.get('discount').errors?.max.max }}
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button nbButton fullWidth hero status="primary" (click)="updateVoucher()" [disabled]="form.invalid">CẬP NHẬT</button>
+            </div>
+            <div class="offset-md-4 col-md-4 col-12">
+                <button nbButton fullWidth hero status="danger" (click)="resetForm()">NHẬP LẠI</button>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ng-template #noVoucher>
+    <nb-card class="text-danger">
+        <nb-card-header>Voucher does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

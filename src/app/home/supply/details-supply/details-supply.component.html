@@ -1,0 +1,49 @@
+<nb-card status="success" *ngIf="supply != undefined; else noSup">
+    <nb-card-header>Thông tin vật tư: {{ supply.id }}</nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-tv"></i>
+                    Tên vật tư:
+                </div>
+                <div class="col-6">{{ supply.name }}</div>
+            </nb-list-item>
+            <nb-list-item>
+                <div class="col-4">
+                    <i class="fas fa-exclamation"></i>
+                    Số lượng khả dụng:
+                </div>
+                <div class="col-6">{{ supply.total }}</div>
+            </nb-list-item>
+            <nb-list-item *ngIf="supply.rooms.length > 0">
+                <div class="col-4">
+                    <i class="fas fa-door-closed"></i>
+                    Số phòng sử dụng:
+                </div>
+                <div class="col-8">{{ supply.rooms.length }}</div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="onUpdate(supply.id)"><i
+                        class="fas fa-edit"></i>&emsp;Cập nhật vật tư </button>
+            </div>
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="info" (click)="distribution()"><i
+                        class="fas fa-edit"></i>&emsp;Phân phối </button>
+            </div>
+            <div class="col-md-4 col-12">
+                <button hero fullWidth nbButton shape="semi-round" status="danger" (click)="onRemove(supply.id)"><i
+                        class="fas fa-minus-circle"></i>&emsp;Xóa vật tư </button>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
+<ng-template #noSup>
+    <nb-card status="danger">
+        <nb-card-header>Supply does not exist</nb-card-header>
+    </nb-card>
+</ng-template>

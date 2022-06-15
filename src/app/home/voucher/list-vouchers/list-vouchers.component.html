@@ -1,0 +1,10 @@
+<nb-card accent="primary">
+    <nb-card-header>
+        DANH SÁCH VOUCHERS
+    </nb-card-header>
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+            (userRowSelect)="voucherSelect($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

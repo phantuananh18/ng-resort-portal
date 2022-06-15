@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>THÊM DỊCH VỤ</nb-card-header>
+      <nb-card-body>
+        <form novalidate [formGroup]="form">
+          <div class="form-group row">
+            <label for="Id" class="label col-sm-3 col-form-label"
+              >Mã số dịch vụ:
+            </label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                formControlName="id"
+                nbInput
+                fullWidth
+                id="Id"
+                placeholder="Nhập mã dịch vụ"
+                [status]="getConfig('id') ? 'danger' : 'basic'"
+              />
+              <span *ngIf="getConfig('id')" class="text-danger">
+                <span *ngIf="form.get('id').errors.required"
+                  >ID is required</span
+                >
+                <span *ngIf="form.get('id').errors?.minlength">
+                  Service ID at least
+                  {{
+                    form.get("id").errors?.minlength.requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="form.get('id').errors?.maxlength">
+                  Service ID at most
+                  {{
+                    form.get("id").errors?.maxlength.requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="form.get('id').errors?.pattern">
+                  Service ID is invalid
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Name" class="label col-sm-3 col-form-label"
+              >Tên dịch vụ:
+            </label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                formControlName="name"
+                nbInput
+                fullWidth
+                id="Name"
+                placeholder="Tên dịch vụ"
+                [status]="getConfig('name') ? 'danger' : 'basic'"
+              />
+              <span *ngIf="getConfig('name')" class="text-danger">
+                <span *ngIf="form.get('name').errors.required"
+                  >Name is required</span
+                >
+                <span *ngIf="form.get('name').errors?.minlength">
+                  Name at least
+                  {{
+                    form.get("name").errors?.minlength.requiredLength
+                  }}
+                  characters
+                </span>
+                <span *ngIf="form.get('id').errors?.maxlength">
+                  Name at most
+                  {{
+                    form.get("name").errors?.maxlength.requiredLength
+                  }}
+                  characters
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Price" class="label col-sm-3 col-form-label"
+              >Giá dịch vụ:
+            </label>
+            <div class="col-sm-9">
+              <input
+                type="number"
+                formControlName="price"
+                nbInput
+                fullWidth
+                id="Price"
+                placeholder="Giá dịch vụ"
+                [status]="getConfig('price') ? 'danger' : 'basic'"
+              />
+              <span *ngIf="getConfig('price')" class="text-danger">
+                <span *ngIf="form.get('price').errors.required"
+                  >Price is required</span
+                >
+                <span *ngIf="form.get('price').errors?.min">
+                  Price at min {{ form.get("price").errors?.min.min }}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Description" class="label col-sm-3 col-form-label"
+              >Mô tả dịch vụ:
+            </label>
+            <div class="col-sm-9">
+              <ckeditor
+                [config]="{ extraPlugins: 'divarea', height: '200' }"
+                formControlName="description"
+                id="Description"
+              ></ckeditor>
+              <span *ngIf="getConfig('description')" class="text-danger">
+                <span *ngIf="form.get('description').errors.required"
+                  >Description is required</span
+                >
+              </span>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="row">
+          <div class="col-md-4 col-12">
+            <button
+              nbButton
+              fullWidth
+              hero
+              status="primary"
+              (click)="addService()"
+              [disabled]="form.invalid"
+            >
+              THÊM MỚI
+            </button>
+          </div>
+          <div class="offset-md-4 col-md-4 col-12">
+            <button
+              nbButton
+              fullWidth
+              hero
+              status="danger"
+              (click)="this.form.reset()"
+            >
+              NHẬP LẠI
+            </button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

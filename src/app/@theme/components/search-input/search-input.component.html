@@ -1,0 +1,8 @@
+<i class="control-icon ion ion-ios-search" (click)="showInput()"></i>
+<input
+  placeholder="Tìm kiếm..."
+  #input
+  [class.hidden]="!isInputShown"
+  (blur)="hideInput()"
+  (input)="onInput($event)"
+/>
