@@ -10,7 +10,7 @@ export class StatusBillPipe implements PipeTransform {
             case 'checkin': return "Check In";
             case 'checkout': return "Check Out";
             case 'confirm': return "Đã xác nhận";
-            case 'cancel': return "Cancel";
+            case 'cancel': return "Đã hủy";
             case 'payment': return "Đã thanh toán";
             default: return "Chờ xác nhận";
         }
