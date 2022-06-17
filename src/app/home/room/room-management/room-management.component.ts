@@ -6,6 +6,7 @@ import { RoomService } from './../../../data/room.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 import { Component, OnInit } from '@angular/core';
+import { StatusRomPipe } from '../../../@theme/pipes';
 @Component({
   selector: 'ngx-room-management',
   templateUrl: './room-management.component.html',
@@ -53,7 +54,39 @@ export class RoomManagementComponent implements OnInit {
         valuePrepareFunction: (data: any) => {
           return data + ' $'
         }
-      }
+      },
+      // status: {
+      //   title: "Trạng thái",
+      //   type: "string",
+      //   valuePrepareFunction: (data) => {
+      //     return new StatusRomPipe().transform(data);
+      //   },
+      //   filter: {
+      //     type: "list",
+      //     config: {
+      //       selectText: "Chọn",
+      //       list: [
+      //         { value: "wait", title: "Chờ nhận phòng" },
+      //         { value: "confirm", title: "Đã nhận phòng" },
+      //         { value: "payment", title: "Đã thanh toán" },
+      //         { value: "cancel", title: "Đã hủy" },
+      //         { value: "checkin", title: "Còn phòng" },
+      //         { value: "checkout", title: "Hết phòng" },
+      //       ],
+      //     },
+      //   },
+      //   filterFunction(cell?: any, search?: string): boolean {
+      //     if (
+      //       search === "" ||
+      //       search === cell ||
+      //       (search === "wait" && cell === "")
+      //     ) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   },
+      // },
     }
   }
 

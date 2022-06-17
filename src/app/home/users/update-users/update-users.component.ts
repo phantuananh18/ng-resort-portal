@@ -15,13 +15,13 @@ export class UpdateUsersComponent implements OnInit {
   frmUpdateUser: FormGroup;
   user$: Observable<Customer>;
   constructor(
-    private readonly fb: FormBuilder, 
+    private readonly fb: FormBuilder,
     private readonly userService: CustomerService,
     private readonly route: ActivatedRoute,
     private readonly dialog: NbDialogService,
     private readonly router: Router,
     private readonly toast: NbToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -36,7 +36,7 @@ export class UpdateUsersComponent implements OnInit {
           Validators.maxLength(50)
         ]],
         password: [u.password, [
-          Validators.required, 
+          Validators.required,
           Validators.minLength(6),
           Validators.maxLength(20),
           Validators.pattern('^[a-z0-9A-Z]{6,20}$')
@@ -61,26 +61,27 @@ export class UpdateUsersComponent implements OnInit {
       u.gender = this.frmUpdateUser.get('gender').value;
       u.email = this.frmUpdateUser.get('email').value;
       this.userService.updateCustomer(u)
-      .subscribe(
-        res => {
-          this.toast.show('Update complete', 'UPDATE', {status: 'success'})
-          this.router.navigateByUrl('/home/user/details/' + u.id)
-        },
-        err => {
-          this.toast.show(err.error, 'Error update', {status: 'danger'})
-        }
-      )
+        .subscribe(
+          res => {
+            this.toast.show('Cập nhật thông tin thành công', 'THÀNH CÔNG', { status: 'success' })
+            this.router.navigateByUrl('/home/user/details/' + u.id)
+          },
+          err => {
+            this.toast.show('Cập nhật thông tin không thành công', 'THẤT BẠIƯ', { status: 'danger' })
+          }
+        )
     })
   }
 
-  updateUser(){
+  updateUser() {
     this.user$.subscribe((u) => {
-      this.dialog.open(DialogResultComponent,{
+      this.dialog.open(DialogResultComponent, {
         context: {
-          title: `Cập nhật khách hàng ${u.id}?`
+          title: `Bạn có cập nhật khách hàng này không ?`,
+          content: `Mã khách hàng: ${u.id}`
         }
       }).onClose.subscribe(result => {
-        if(result) {
+        if (result) {
           this.update();
         }
       })

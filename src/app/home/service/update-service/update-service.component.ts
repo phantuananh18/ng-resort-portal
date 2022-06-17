@@ -46,18 +46,19 @@ export class UpdateServiceComponent implements OnInit {
 
   updateService() {
     this.service$.subscribe((s) => {
-      this.dialog.open(DialogResultComponent,{
+      this.dialog.open(DialogResultComponent, {
         context: {
-          title: `Cập nhật dịch vụ ${s.id}?`
+          title: 'Bạn có muốn cập nhật dịch vụ này không',
+          content: `Mã dịch vụ: ${s.id}`
         }
       }).onClose.subscribe(result => {
-        if(result) {
+        if (result) {
           this.update();
           this.router.navigateByUrl(`/home/service/details/${s.id}`);
         }
       })
     });
-    
+
   }
 
   update() {
@@ -66,20 +67,20 @@ export class UpdateServiceComponent implements OnInit {
       s.description = this.form.get('description').value;
       s.price = this.form.get('price').value;
       this.svService.updateService(s)
-      .subscribe(
-        res => {
-          this.toast.show('Edit success', 'EDIT', { status: 'success'})
-          this.router.navigateByUrl('/home/service/details/' + s.id)
-        },
-        err => {
-          this.dialog.open(DialogResultComponent, {
-            context: {
-              title: 'ERROR',
-              content: err.error
-            }
-          })
-        }
-      );
+        .subscribe(
+          res => {
+            this.toast.show('Cập nhật dịch vụ thành công', 'THÀNH CÔNG', { status: 'success' })
+            this.router.navigateByUrl('/home/service/details/' + s.id)
+          },
+          err => {
+            this.dialog.open(DialogResultComponent, {
+              context: {
+                title: 'THẤT BẠI',
+                content: 'Cập nhật dịch vụ không thành công'
+              }
+            })
+          }
+        );
     })
   }
 
@@ -91,7 +92,7 @@ export class UpdateServiceComponent implements OnInit {
     })
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 }

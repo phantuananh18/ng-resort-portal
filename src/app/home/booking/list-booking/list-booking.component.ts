@@ -41,7 +41,7 @@ export class ListBookingComponent implements OnInit {
         },
       },
       checkinDate: {
-        title: "CheckIn",
+        title: "Check in",
         type: "date",
         valuePrepareFunction: (date) => {
           var raw = new Date(date);
@@ -50,7 +50,7 @@ export class ListBookingComponent implements OnInit {
         },
       },
       checkoutDate: {
-        title: "CheckOut",
+        title: "Check out",
         type: "date",
         valuePrepareFunction: (date) => {
           var raw = new Date(date);
@@ -73,8 +73,8 @@ export class ListBookingComponent implements OnInit {
               { value: "confirm", title: "Đã xác nhận" },
               { value: "payment", title: "Đã thanh toán" },
               { value: "cancel", title: "Đã hủy" },
-              { value: "checkin", title: "Check In" },
-              { value: "checkout", title: "Checkout" },
+              { value: "checkin", title: "Check in" },
+              { value: "checkout", title: "Check out" },
             ],
           },
         },

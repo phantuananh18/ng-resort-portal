@@ -43,16 +43,26 @@ export class DetailServiceComponent implements OnInit {
   onRemove(id: string) {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Are you want to remove service?`,
-        content: `Service id: ${id}`
+        title: `Bạn có muốn xóa dịch vụ này ?`,
+        content: `Mã dịch vụ: ${id}`
       }
     }).onClose.subscribe(result => {
       if (result) {
         this.svService.removeService(id).subscribe(res => {
-          this.toast.show('REMOVE SUCCESS', 'REMOVE', { status: 'success' })
+          this.toast.show('Xóa dịch vụ thành công', 'THÀNH CÔNG', { status: 'success' })
           this.router.navigateByUrl("/home/service")
         })
       }
-    })
+    },
+      err => {
+        console.log(err)
+        this.dialog.open(DialogResultComponent, {
+          context: {
+            title: 'THẤT BẠI',
+            content: 'Xóa dịch vụ không thành công'
+          }
+        })
+      }
+    )
   }
 }

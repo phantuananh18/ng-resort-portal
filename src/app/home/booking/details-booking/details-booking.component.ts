@@ -61,14 +61,14 @@ export class DetailsBookingComponent implements OnInit {
   RemoveBooking() {
     this.bookingService.DeleteBooking(this.bill.id).subscribe(
       res => {
-        this.toastr.show(`Xóa hóa đơn #${this.bill.id} thành công`, 'XÓA', { status: 'success' })
+        this.toastr.show(`Xóa hóa đơn #${this.bill.id} thành công`, 'THÀNH CÔNG', { status: 'success' })
         this.router.navigateByUrl('/home/booking')
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: err.error
+            content: 'Xóa hóa đơn không thành công'
           }
         })
       }
@@ -82,7 +82,7 @@ export class DetailsBookingComponent implements OnInit {
         this.loadData()
       },
       err => {
-        this.toastr.show('Hủy hóa đơn thất bại', 'HỦY', { status: 'danger' })
+        this.toastr.show('Hủy hóa đơn thất bại', 'THẤT BẠI', { status: 'danger' })
       }
     )
   }

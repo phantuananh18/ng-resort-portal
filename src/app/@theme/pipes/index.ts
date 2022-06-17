@@ -8,3 +8,4 @@ export * from './number-with-commas.pipe';
 export * from './permission.pipe';
 export * from './inner-html.pipe';
 export * from './status-bill.pipe';
+export * from './status-rom.pipe';

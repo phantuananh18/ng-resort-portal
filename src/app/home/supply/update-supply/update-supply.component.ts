@@ -15,9 +15,9 @@ export class UpdateSupplyComponent implements OnInit {
   form: FormGroup;
   supply$: Observable<Supply>;
   listType: any[] = [
-    {value:'none',name:'Giữ nguyên số lượng'},
-    {value:'newcount',name:'Cập nhật số lượng'},
-    {value:'addcount',name:'Nhập thêm số lượng'},
+    { value: 'none', name: 'Giữ nguyên số lượng' },
+    { value: 'newcount', name: 'Cập nhật số lượng' },
+    { value: 'addcount', name: 'Nhập thêm số lượng' },
   ]
   constructor(
     private fb: FormBuilder,
@@ -50,12 +50,13 @@ export class UpdateSupplyComponent implements OnInit {
 
   updateSupply() {
     this.supply$.subscribe((s) => {
-      this.dialog.open(DialogResultComponent,{
+      this.dialog.open(DialogResultComponent, {
         context: {
-          title: `Cập nhật vật tư ${s.id}?`
+          title: 'Bạn có muốn xóa vật tư này không ?',
+          content: `Mã vật tư: ${s.id}`
         }
       }).onClose.subscribe(result => {
-        if(result) {
+        if (result) {
           this.update(s.id)
         }
       })
@@ -63,20 +64,20 @@ export class UpdateSupplyComponent implements OnInit {
   }
 
   update(idSup: string) {
-      let model = {
-        id: idSup,
-        name: this.form.get('name').value,
-        editType: this.form.get('type').value,
-        count: this.form.get('total').value
-      }
-      this.supplyService.updateSupply(model)
+    let model = {
+      id: idSup,
+      name: this.form.get('name').value,
+      editType: this.form.get('type').value,
+      count: this.form.get('total').value
+    }
+    this.supplyService.updateSupply(model)
       .subscribe(
         res => {
-          this.toast.show('Edit success', 'EDIT', { status: 'success'})
+          this.toast.show('Sửa vật tư thành công', 'THÀNH CÔNG', { status: 'success' })
           this.router.navigateByUrl('/home/supply/details/' + model.id)
         },
         err => {
-          this.toast.show('Edit failed', 'EDIT', { status: 'danger' })
+          this.toast.show('Sửa vật tư không thành công', 'THẤT BẠI', { status: 'danger' })
         }
       );
   }
@@ -89,7 +90,7 @@ export class UpdateSupplyComponent implements OnInit {
     })
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 

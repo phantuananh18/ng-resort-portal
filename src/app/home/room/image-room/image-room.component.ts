@@ -122,7 +122,7 @@ export class ImageRoomComponent implements OnInit {
     this.dialog.open(DialogResultComponent, {
       context: {
         title: 'XÓA ẢNH',
-        content: 'Bạn có muốn xóa ảnh này không?'
+        content: 'Bạn có muốn xóa ảnh này không ?'
       }
     }).onClose.subscribe(res => {
       if (res) {

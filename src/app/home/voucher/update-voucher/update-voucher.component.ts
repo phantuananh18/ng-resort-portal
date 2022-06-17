@@ -30,80 +30,81 @@ export class UpdateVoucherComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-    this.voucherService.getByID(id)
-      .subscribe(res => {
-        this.voucher = res
-        this.form = this.fb.group({
-          fromDate: [new Date(this.voucher.fromDate), [
-            Validators.required
-          ]],
-          toDate: [new Date(this.voucher.toDate), [
-            Validators.required
-          ]],
-          condition: [this.voucher.condition,[
-            Validators.required,
-            Validators.min(0),
-          ]],
-          discount:[this.voucher.discount,[
-            Validators.required,
-            Validators.min(1),
-            Validators.max(100)
-          ]]
+      this.voucherService.getByID(id)
+        .subscribe(res => {
+          this.voucher = res
+          this.form = this.fb.group({
+            fromDate: [new Date(this.voucher.fromDate), [
+              Validators.required
+            ]],
+            toDate: [new Date(this.voucher.toDate), [
+              Validators.required
+            ]],
+            condition: [this.voucher.condition, [
+              Validators.required,
+              Validators.min(0),
+            ]],
+            discount: [this.voucher.discount, [
+              Validators.required,
+              Validators.min(1),
+              Validators.max(100)
+            ]]
+          })
         })
-      })
     })
   }
   updateVoucher() {
-    this.dialog.open(DialogResultComponent,{
+    this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Cập nhật voucher ${this.voucher.code}?`
+        title: 'Bạn có muốn cập nhật voucher này không ?',
+        content: `Mã voucher: ${this.voucher.code}`
       }
     }).onClose.subscribe(result => {
-      if(result) {
+      if (result) {
         this.update();
       }
     })
   }
 
   update() {
-      this.voucherService.updateVoucher({
-        code: this.voucher.code,
-        fromDate: new Date(this.getValueFrm('fromDate')),
-        toDate: new Date(this.getValueFrm('toDate')),
-        condition: this.getValueFrm('condition'),
-        discount: this.getValueFrm('discount')
-      }).subscribe(
-        res => {
-          this.toast.show('Edit success', 'EDIT', { status: 'success'}),
+    this.voucherService.updateVoucher({
+      code: this.voucher.code,
+      fromDate: new Date(this.getValueFrm('fromDate')),
+      toDate: new Date(this.getValueFrm('toDate')),
+      condition: this.getValueFrm('condition'),
+      discount: this.getValueFrm('discount')
+    }).subscribe(
+      res => {
+        this.toast.show('Cập nhật voucher thành công', 'THÀNH CÔNG', { status: 'success' }),
           this.router.navigateByUrl('/home/voucher/details/' + this.voucher.code)
-        },
-        err => {
-          this.dialog.open(DialogResultComponent, {
-            context : {
-              title: 'ERROR',
-              content: err.error
-            }
-          })
-        }
-      );
+      },
+      err => {
+        this.dialog.open(DialogResultComponent, {
+          context: {
+            title: 'THẤT BẠI',
+            content: 'Cập nhật voucher không thành công'
+          }
+        })
+      }
+    );
   }
 
   resetForm() {
-    this.setValueFrm('condition',this.voucher.condition),
-    this.setValueFrm('discount',this.voucher.discount),
-    this.setValueFrm('fromDate',new Date(this.voucher.fromDate)),
-    this.setValueFrm('toDate',new Date(this.voucher.toDate))
+    this.setValueFrm('condition', this.voucher.condition),
+      this.setValueFrm('discount', this.voucher.discount),
+      this.setValueFrm('fromDate', new Date(this.voucher.fromDate)),
+      this.setValueFrm('toDate', new Date(this.voucher.toDate))
   }
 
   getValueFrm(ctrl: string) {
     return this.form.get(ctrl).value
   }
 
-  setValueFrm(ctrl:string, value:any) {
+  setValueFrm(ctrl: string, value: any) {
     this.form.get(ctrl).setValue(value)
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 
@@ -111,8 +112,8 @@ export class UpdateVoucherComponent implements OnInit {
     let today = new Date().getTime();
     let fromdate = new Date(this.voucher.fromDate).getTime();
     let min;
-    if(fromdate >= today) min = new Date();
+    if (fromdate >= today) min = new Date();
     else min = new Date(this.voucher.fromDate)
-    return this.dateService.addDay(min,0)
+    return this.dateService.addDay(min, 0)
   }
 }

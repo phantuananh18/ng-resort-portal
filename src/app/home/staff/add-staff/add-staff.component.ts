@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-add-staff',
-  templateUrl: './add.component.html',
+  templateUrl: './add-staff.component.html',
 })
 export class AddStaffComponent implements OnInit {
   formAddStaff: FormGroup;
@@ -28,9 +28,9 @@ export class AddStaffComponent implements OnInit {
     this.formAddStaff = this.fb.group({
       id: ['', [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(4),
         Validators.maxLength(20),
-        Validators.pattern('^[a-z0-9A-Z]{5,20}$')
+        Validators.pattern('^[a-z0-9A-Z]{4,20}$')
       ]],
       name: ['', [
         Validators.required,
@@ -74,7 +74,7 @@ export class AddStaffComponent implements OnInit {
           this.dialog.open(DialogResultComponent, {
             context: {
               title: 'THẤT BẠI',
-              content: err.error
+              content: 'Thêm nhân viên không thành công'
             }
           })
         }

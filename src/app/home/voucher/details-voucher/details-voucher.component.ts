@@ -61,7 +61,7 @@ export class DetailsVoucherComponent implements OnInit {
               this.dialog.open(DialogResultComponent, {
                 context: {
                   title: 'THẤT BẠI',
-                  content: err.error
+                  content: 'Xóa voucher không thành công'
                 }
               })
             }

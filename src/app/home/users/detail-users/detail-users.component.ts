@@ -40,7 +40,7 @@ export class DetailUsersComponent implements OnInit {
     this.dialog.open(DialogResultComponent, {
       context: {
         title: `Bạn có muốn xóa khách hàng này ?`,
-        content: `Mã khách hàng ${this.customer.id}`
+        content: `Mã khách hàng: ${this.customer.id}`
       }
     }).onClose.subscribe(result => {
       if (result) {
@@ -53,7 +53,7 @@ export class DetailUsersComponent implements OnInit {
             this.dialog.open(DialogResultComponent, {
               context: {
                 title: 'THẤT BẠI',
-                content: err.error
+                content: 'Xóa khách hàng không thành công'
               }
             })
           }

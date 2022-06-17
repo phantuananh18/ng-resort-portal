@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddServiceComponent implements OnInit {
   form: FormGroup;
   constructor(
-    private readonly ServiceService:ServiceService,
+    private readonly ServiceService: ServiceService,
     private fb: FormBuilder,
     private readonly router: Router,
     private readonly toast: NbToastrService,
@@ -21,10 +21,10 @@ export class AddServiceComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: ['', [
-        Validators.required, 
-        Validators.minLength(2),
+        Validators.required,
+        Validators.minLength(4),
         Validators.maxLength(10),
-        Validators.pattern('^[0-9A-Z]{2,10}$')
+        Validators.pattern('^[0-9A-Z]{4,10}$')
       ]],
       name: ['', [
         Validators.required,
@@ -42,27 +42,27 @@ export class AddServiceComponent implements OnInit {
 
   addService() {
     this.ServiceService.addService({
-      id : this.form.get('id').value,
-      name : this.form.get('name').value,
-      description : this.form.get('description').value,
-      price : this.form.get('price').value
+      id: this.form.get('id').value,
+      name: this.form.get('name').value,
+      description: this.form.get('description').value,
+      price: this.form.get('price').value
     }).subscribe(
       res => {
-        this.toast.show('Add success', 'ADD', { status: 'success'}),
-        this.router.navigateByUrl('/home/service')
+        this.toast.show('Thêm dịch vụ thành công', 'THÀNH CÔNG', { status: 'success' }),
+          this.router.navigateByUrl('/home/service')
       },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
-            title: 'ERROR',
-            content: err.error
+            title: 'THẤT BẠI',
+            content: 'Thêm dịch vụ không thành công'
           }
         })
       }
     )
   }
 
-  getConfig(ctrl: string):boolean {
+  getConfig(ctrl: string): boolean {
     return this.form.get(ctrl).invalid && this.form.get(ctrl).touched
   }
 }

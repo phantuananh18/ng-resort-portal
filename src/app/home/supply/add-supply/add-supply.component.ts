@@ -22,9 +22,9 @@ export class AddSupplyComponent implements OnInit {
     this.form = this.fb.group({
       id: ['', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.minLength(4),
         Validators.maxLength(10),
-        Validators.pattern('^[0-9A-Z]{2,10}$')
+        Validators.pattern('^[0-9A-Z]{4,10}$')
       ]],
       name: ['', [
         Validators.required,
@@ -51,7 +51,7 @@ export class AddSupplyComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: err.error
+            content: 'Thêm vật tư không thành công'
           }
         })
       }

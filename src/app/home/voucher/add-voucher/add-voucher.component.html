@@ -64,7 +64,7 @@
               <span *ngIf="getConfig('condition')" class="text-danger">
                 <span *ngIf="form.get('condition').errors.required">Vui lòng nhập điều kiện</span>
                 <span *ngIf="form.get('condition').errors?.min">
-                  Condition at min {{ form.get("condition").errors?.min.min }}
+                  Điều kiện không được nhỏ hơn {{ form.get("condition").errors?.min.min }}
                 </span>
               </span>
             </div>
@@ -76,12 +76,12 @@
               <input type="number" formControlName="discount" nbInput fullWidth id="discount" placeholder="Giảm giá"
                 [status]="getConfig('discount') ? 'danger' : 'basic'" />
               <span *ngIf="getConfig('discount')" class="text-danger">
-                <span *ngIf="form.get('discount').errors.required">Vui lòng nhập mã giảm giá</span>
+                <span *ngIf="form.get('discount').errors.required">Vui lòng nhập phần trăm giảm giá</span>
                 <span *ngIf="form.get('discount').errors?.min">
-                  Mã giảm giá ít nhất {{ form.get("discount").errors?.min.min }}
+                  giảm giá ít nhất {{ form.get("discount").errors?.min.min }}
                 </span>
                 <span *ngIf="form.get('discount').errors?.max">
-                  Mã giảm giá tối đa {{ form.get("discount").errors?.max.min }}
+                  giảm giá tối đa {{ form.get("discount").errors?.max.min }}
                 </span>
               </span>
             </div>

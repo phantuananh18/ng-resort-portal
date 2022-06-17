@@ -24,9 +24,9 @@ export class AddVoucherComponent implements OnInit {
     this.form = this.fb.group({
       code: ['', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.minLength(4),
         Validators.maxLength(10),
-        Validators.pattern('^[0-9A-Z]{2,10}$')
+        Validators.pattern('^[0-9A-Z]{4,10}$')
       ]],
       fromDate: [new Date(), [
         Validators.required
@@ -62,7 +62,7 @@ export class AddVoucherComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: err.error
+            content: 'Xóa voucher không thành công'
           }
         })
       }

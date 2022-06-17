@@ -84,7 +84,7 @@ export class ListVouchersComponent implements OnInit {
     this.dialog.open(DialogResultComponent, {
       context: {
         title: 'Bạn có muốn xóa mã voucher này không ?',
-        content: `Voucher ${event.data?.code}`
+        content: `Mã voucher: ${event.data?.code}`
       }
     }).onClose.subscribe(result => {
       if (result) {

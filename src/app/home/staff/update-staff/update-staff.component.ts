@@ -63,7 +63,8 @@ export class UpdateStaffComponent implements OnInit {
   updateStaff() {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Cập nhật nhân viên ${this.staff.id}?`
+        title: 'Bạn có muốn cập nhật nhân viên này không ?',
+        content: `Mã nhân viên: ${this.staff.id}`
       }
     }).onClose.subscribe(result => {
       if (result) {
@@ -88,7 +89,7 @@ export class UpdateStaffComponent implements OnInit {
           this.dialog.open(DialogResultComponent, {
             context: {
               title: 'THẤT BẠI',
-              content: err.error
+              content: 'Cập nhật nhân viên không thành công'
             }
           })
         })

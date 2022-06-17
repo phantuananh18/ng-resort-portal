@@ -136,7 +136,7 @@ export class AddBookingComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: err.error
+            content: 'Thêm hóa đơn không thành công'
           }
         })
       })
@@ -145,14 +145,14 @@ export class AddBookingComponent implements OnInit {
   update() {
     this.getFormData()
     this.bookingService.EditBooking(this.booking).subscribe(res => {
-      this.toast.show('Sửa hóa đơn thành công', 'THÀNH CÔNG', { status: 'success' })
+      this.toast.show('Cập nhật hóa đơn thành công', 'THÀNH CÔNG', { status: 'success' })
       this.router.navigateByUrl('/home/booking/details/' + this.booking.id)
     },
       err => {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: err.error
+            content: 'Cập nhật hóa đơn không thành công'
           }
         })
       })

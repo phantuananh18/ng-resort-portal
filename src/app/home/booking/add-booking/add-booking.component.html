@@ -48,7 +48,7 @@
               <nb-datepicker #checkin [min]="minCheckin" [max]="maxCheckin">
               </nb-datepicker>
               <span *ngIf="getConfig('checkin')" class="text-danger">
-                <span *ngIf="form.get('checkin').errors.required">Vui lòng nhập ngày checkin</span>
+                <span *ngIf="form.get('checkin').errors.required">Vui lòng chọn ngày checkin</span>
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@
               </nb-datepicker>
               <span *ngIf="getConfig('checkin')" class="text-danger">
                 <span *ngIf="form.get('checkin').errors.required">
-                  Vui lòng nhập ngày checkout
+                  Vui lòng chọn ngày checkout
                 </span>
               </span>
             </div>
@@ -110,8 +110,10 @@
             <div class="col-sm-9">
               <input type="text" formControlName="voucher" nbInput fullWidth id="Voucher" placeholder="Nhập mã voucher"
                 [status]="getConfig('voucher') ? 'danger' : 'basic'" />
-              <span *ngIf="form.get('voucher').errors.required">
-                Yêu cầu nhập mã ưu đãi
+              <span *ngIf="getConfig('voucher')" class="text-danger">
+                <span *ngIf="form.get('voucher').errors.required">
+                  Yêu cầu nhập mã ưu đãi
+                </span>
               </span>
             </div>
           </div>

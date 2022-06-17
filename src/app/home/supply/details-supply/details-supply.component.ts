@@ -41,7 +41,7 @@ export class DetailsSupplyComponent implements OnInit {
   onRemove(id: string) {
     this.dialog.open(DialogResultComponent, {
       context: {
-        title: `Bạn có muốn xóa vật tư ?`,
+        title: `Bạn có muốn xóa vật tư này không ?`,
         content: `Mã vật tư: ${id}`
       }
     }).onClose.subscribe(result => {
