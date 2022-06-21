@@ -43,7 +43,7 @@ export class CallServiceComponent implements OnInit {
       this.toast.show(`Thêm dịch vụ ${service} thành công`, 'THÊM', { status: 'success' })
       this.loadData()
     }, err => {
-      this.toast.show(`Thêm dịch vụ ${service} thất bại ${err.error}`, 'THÊM', { status: 'danger' })
+      this.toast.show(`Thêm dịch vụ ${service} thất bại: ${err.error}`, 'THÊM', { status: 'danger' })
     })
   }
 
@@ -52,7 +52,7 @@ export class CallServiceComponent implements OnInit {
       this.toast.show(`Xóa dịch vụ ${service} thành công`, 'XÓA', { status: 'success' })
       this.loadData()
     }, err => {
-      this.toast.show(`Xóa dịch vụ ${service} thất bại ${err.error}`, 'XÓA', { status: 'danger' })
+      this.toast.show(`Xóa dịch vụ ${service} thất bại: ${err.error}`, 'XÓA', { status: 'danger' })
     })
   }
 }

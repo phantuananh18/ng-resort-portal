@@ -77,7 +77,7 @@ export class EditRoomComponent implements OnInit {
           this.dialog.open(DialogResultComponent, {
             context: {
               title: 'THẤT BẠI',
-              content: 'Sửa phòng không thành công' + err.error
+              content: 'Sửa phòng không thành công: ' + err.error
             }
           })
         }

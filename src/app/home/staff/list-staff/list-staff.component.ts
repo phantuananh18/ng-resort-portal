@@ -125,7 +125,7 @@ export class ListStaffComponent implements OnInit {
               this.loadSrc()
             },
             err => {
-              this.toast.show('Xóa nhân viên thất bại' + err.error, 'THẤT BẠI', { status: 'danger' })
+              this.toast.show('Xóa nhân viên thất bại: ' + err.error, 'THẤT BẠI', { status: 'danger' })
             }
           )
       }

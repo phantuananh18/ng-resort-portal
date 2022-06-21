@@ -51,7 +51,7 @@ export class AddSupplyComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Thêm vật tư không thành công' + err.error
+            content: 'Thêm vật tư không thành công: ' + err.error
           }
         })
       }

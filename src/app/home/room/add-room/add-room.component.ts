@@ -57,7 +57,7 @@ export class AddRoomComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Thêm phòng không thành công' + err.error
+            content: 'Thêm phòng không thành công: ' + err.error
           }
         })
       }

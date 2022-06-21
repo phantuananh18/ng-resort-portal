@@ -67,7 +67,7 @@ export class UpdateUsersComponent implements OnInit {
             this.router.navigateByUrl('/home/user/details/' + u.id)
           },
           err => {
-            this.toast.show('Cập nhật thông tin không thành công' + err.error, 'THẤT BẠIƯ', { status: 'danger' })
+            this.toast.show('Cập nhật thông tin không thành công: ' + err.error, 'THẤT BẠIƯ', { status: 'danger' })
           }
         )
     })

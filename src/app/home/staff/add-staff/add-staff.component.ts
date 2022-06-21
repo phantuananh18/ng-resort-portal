@@ -74,7 +74,7 @@ export class AddStaffComponent implements OnInit {
           this.dialog.open(DialogResultComponent, {
             context: {
               title: 'THẤT BẠI',
-              content: 'Thêm nhân viên không thành công' + err.error
+              content: 'Thêm nhân viên không thành công: ' + err.error
             }
           })
         }

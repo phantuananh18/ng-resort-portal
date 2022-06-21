@@ -55,7 +55,7 @@ export class AddServiceComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Thêm dịch vụ không thành công' + err.error
+            content: 'Thêm dịch vụ không thành công: ' + err.error
           }
         })
       }

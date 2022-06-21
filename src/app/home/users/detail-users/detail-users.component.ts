@@ -53,7 +53,7 @@ export class DetailUsersComponent implements OnInit {
             this.dialog.open(DialogResultComponent, {
               context: {
                 title: 'THẤT BẠI',
-                content: 'Xóa khách hàng không thành công' + err.error
+                content: 'Xóa khách hàng không thành công: ' + err.error
               }
             })
           }

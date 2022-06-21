@@ -66,7 +66,7 @@ export class DistributionComponent implements OnInit {
         this.ref.close(true)
       },
       err => {
-        this.toast.show('Phân phối vật tư không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
+        this.toast.show('Phân phối vật tư không thành công: ' + err.error, 'THẤT BẠI', { status: 'danger' })
       }
     )
   }
@@ -82,7 +82,7 @@ export class DistributionComponent implements OnInit {
         this.ref.close(true)
       },
       err => {
-        this.toast.show('Xóa không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
+        this.toast.show('Xóa không thành công: ' + err.error, 'THẤT BẠI', { status: 'danger' })
       }
     )
   }

@@ -42,7 +42,7 @@ export class DetailStaffComponent implements OnInit {
               this.dialog.open(DialogResultComponent, {
                 context: {
                   title: 'THẤT BẠI',
-                  content: 'Xóa nhân viên không thành công' + err.error
+                  content: 'Xóa nhân viên không thành công: ' + err.error
                 }
               })
             }
