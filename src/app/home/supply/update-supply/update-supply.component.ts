@@ -77,7 +77,7 @@ export class UpdateSupplyComponent implements OnInit {
           this.router.navigateByUrl('/home/supply/details/' + model.id)
         },
         err => {
-          this.toast.show('Sửa vật tư không thành công', 'THẤT BẠI', { status: 'danger' })
+          this.toast.show('Sửa vật tư không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
         }
       );
   }

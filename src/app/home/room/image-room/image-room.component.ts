@@ -95,7 +95,7 @@ export class ImageRoomComponent implements OnInit {
               this.loadData();
               this.files.splice(this.files.indexOf(file), 1)
             },
-            err => this.toastr.show(err.error, 'THẤT BẠI', { status: 'danger' })
+            err => this.toastr.show('Tải ảnh lên không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
           )
         })
       })
@@ -129,7 +129,7 @@ export class ImageRoomComponent implements OnInit {
         this.roomService.removeImage(this.listImg[index].url).subscribe(
           res => this.loadData(),
           err => {
-            this.toastr.show('Lỗi khi xóa ảnh', 'THẤT BẠI', { status: 'danger' })
+            this.toastr.show('Lỗi khi xóa ảnh' + err.error, 'THẤT BẠI', { status: 'danger' })
             console.log(err)
           }
         )

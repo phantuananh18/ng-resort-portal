@@ -64,7 +64,7 @@ export class AddUsersComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Thêm khách hàng không thành công'
+            content: 'Thêm khách hàng không thành công' + err.error
           }
         })
       }

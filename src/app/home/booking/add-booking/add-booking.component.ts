@@ -136,7 +136,7 @@ export class AddBookingComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Thêm hóa đơn không thành công'
+            content: `Thêm hóa đơn không thành công: ${err.error}`
           }
         })
       })
@@ -152,7 +152,7 @@ export class AddBookingComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Cập nhật hóa đơn không thành công'
+            content: `Cập nhật hóa đơn không thành công : ${err.error}`
           }
         })
       })

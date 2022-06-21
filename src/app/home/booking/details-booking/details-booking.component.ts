@@ -68,7 +68,7 @@ export class DetailsBookingComponent implements OnInit {
         this.dialog.open(DialogResultComponent, {
           context: {
             title: 'THẤT BẠI',
-            content: 'Xóa hóa đơn không thành công'
+            content: `'Xóa hóa đơn không thành công: ${err.error}`
           }
         })
       }
@@ -82,7 +82,7 @@ export class DetailsBookingComponent implements OnInit {
         this.loadData()
       },
       err => {
-        this.toastr.show('Hủy hóa đơn thất bại', 'THẤT BẠI', { status: 'danger' })
+        this.toastr.show(`Hủy hóa đơn thất bại: ${err.error}`, 'THẤT BẠI', { status: 'danger' })
       }
     )
   }

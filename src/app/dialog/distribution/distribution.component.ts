@@ -62,11 +62,11 @@ export class DistributionComponent implements OnInit {
       count: this.formDistribute.get('count').value
     }).subscribe(
       res => {
-        this.toast.show('Thêm thành công', 'THÀNH CÔNG', { status: 'success' })
+        this.toast.show('Phân phối vật tư thành công', 'THÀNH CÔNG', { status: 'success' })
         this.ref.close(true)
       },
       err => {
-        this.toast.show(err.error, 'THÊM THẤT BẠI', { status: 'danger' })
+        this.toast.show('Phân phối vật tư không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
       }
     )
   }
@@ -78,11 +78,11 @@ export class DistributionComponent implements OnInit {
       count: this.formDistribute.get('count').value
     }).subscribe(
       res => {
-        this.toast.show('Xóa thành công', 'XÓA', { status: 'success' })
+        this.toast.show('Xóa thành công', 'THÀNH CÔNG', { status: 'success' })
         this.ref.close(true)
       },
       err => {
-        this.toast.show(err.error, 'XÓA THẤT BẠI', { status: 'danger' })
+        this.toast.show('Xóa không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
       }
     )
   }

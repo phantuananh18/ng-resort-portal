@@ -76,7 +76,7 @@ export class UpdateServiceComponent implements OnInit {
             this.dialog.open(DialogResultComponent, {
               context: {
                 title: 'THẤT BẠI',
-                content: 'Cập nhật dịch vụ không thành công'
+                content: 'Cập nhật dịch vụ không thành công' + err.error
               }
             })
           }

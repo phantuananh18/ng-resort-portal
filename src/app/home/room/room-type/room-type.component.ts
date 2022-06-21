@@ -93,7 +93,7 @@ export class RoomTypeComponent implements OnInit {
               this.showToast('Xóa loại phòng thành công', 'THÀNH CÔNG', { status: 'success' })
             },
             err => {
-              this.toast.show('Xóa loại phòng không thành công', 'THẤT BẠI', { status: 'danger' })
+              this.toast.show('Xóa loại phòng không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
             }
           )
       }
@@ -115,7 +115,7 @@ export class RoomTypeComponent implements OnInit {
           },
           err => {
             event.confirm.reject();
-            this.toast.show('Sửa loại phòng không thành công', 'THẤT BẠI', { status: 'danger' })
+            this.toast.show('Sửa loại phòng không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
           }
         )
     }
@@ -135,7 +135,7 @@ export class RoomTypeComponent implements OnInit {
             this.showToast('Thêm loại phòng thành công', 'THÀNH CÔNG', { status: 'success' })
           },
           err => {
-            this.showToast('Thêm loại phòng không thành công', err.error, { status: 'danger' })
+            this.showToast('Thêm loại phòng không thành công' + err.error, 'THẤT BẠI', { status: 'danger' })
           }
         )
     }
